@@ -15,8 +15,8 @@ module.exports = app => {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
                     signed: true,
                     path: '/',
-                    httpOnly: true, // can't access cookies on the client side, correct this!
-                    secure: true
+                    httpOnly: true
+                    // secure: true
                 })
                 .send(user);
         } catch (e) {
