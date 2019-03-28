@@ -7,10 +7,10 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import registerReducer from './store/reducers/register';
+import authReducer from './store/reducers/auth';
 
 const rootReducer = combineReducers({
-    regist: registerReducer
+    regist: authReducer
 });
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
 const app = (

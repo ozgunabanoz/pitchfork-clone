@@ -61,6 +61,43 @@ userSchema.methods.generateToken = function() {
     });
 };
 
+userSchema.statics.findWithToken = function(token) {
+    let User = this;
+    let decoded;
+
+    try {
+        decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+        return Promise.reject();
+    }
+
+    return User.findOne({
+        _id: decoded._id,
+        'tokens.token': token,
+        'tokens.access': 'auth'
+    });
+};
+
+userSchema.statics.findByLoginCreds = async function(username, password) {
+    let User = this;
+
+    let user = await User.findOne({ username });
+
+    if (!user) {
+        return Promise.reject();
+    }
+
+    return new Promise((resolve, reject) => {
+        bcrypt.compare(password, user.password, (err, res) => {
+            if (!res) {
+                reject();
+            } else {
+                resolve(user);
+            }
+        });
+    });
+};
+
 userSchema.pre('save', function(next) {
     let user = this;
 

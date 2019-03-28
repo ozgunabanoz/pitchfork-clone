@@ -1,1 +1,1 @@
-export { postUser } from './register';
+export { postUser } from './auth';

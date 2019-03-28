@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Register from './Register/Register';
+import MainPage from './MainPage';
 
 class App extends Component {
     render() {
@@ -11,6 +12,7 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         <Header />
+                        <Route exact path="/" component={MainPage} />
                         <Route exact path="/register" component={Register} />
                     </div>
                 </BrowserRouter>
