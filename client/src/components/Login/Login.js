@@ -5,26 +5,25 @@ import { connect } from 'react-redux';
 import FIELDS from './fields';
 import * as actions from './../../store/actions/index';
 
-class Register extends Component {
+class Login extends Component {
     state = {
-        registerForm: {
+        loginForm: {
             username: '',
-            email: '',
             password: ''
         }
     };
 
     inputChangedHandler = (event, inputEntity) => {
         const updatedFormElement = {
-            ...this.state.registerForm,
+            ...this.state.loginForm,
             [inputEntity]: event.target.value
         };
 
-        this.setState({ registerForm: updatedFormElement });
+        this.setState({ loginForm: updatedFormElement });
     };
 
-    onRegisterSubmitHandler = () => {
-        this.props.onRegister(this.state.registerForm);
+    onLoginSubmitHandler = () => {
+        this.props.onLogin(this.state.loginForm);
     };
 
     renderFields() {
@@ -35,7 +34,7 @@ class Register extends Component {
                         <input
                             id={name}
                             type={type}
-                            value={this.state.registerForm[name]}
+                            value={this.state.loginForm[name]}
                             onChange={event => this.inputChangedHandler(event, name)}
                         />
                         <label className="active" for={name}>
@@ -58,7 +57,7 @@ class Register extends Component {
                         className="btn-flat red lighten-2 white-text"
                         style={{ marginLeft: '10px' }}
                         type="submit"
-                        onClick={this.onRegisterSubmitHandler}
+                        onClick={this.onLoginSubmitHandler}
                     >
                         Submit
                     </button>
@@ -70,11 +69,11 @@ class Register extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRegister: registerForm => dispatch(actions.postUser(registerForm))
+        onLogin: loginForm => dispatch(actions.login(loginForm))
     };
 };
 
 export default connect(
     null,
     mapDispatchToProps
-)(Register);
+)(Login);

@@ -4,19 +4,21 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header';
 import Register from './Register/Register';
 import MainPage from './MainPage';
+import Login from './Login/Login';
+import Logout from './Logout/Logout';
 
 class App extends Component {
     render() {
         return (
-            <div className="container" style={{ width: '95%' }}>
-                <BrowserRouter>
-                    <div>
-                        <Header />
-                        <Route exact path="/" component={MainPage} />
-                        <Route exact path="/register" component={Register} />
-                    </div>
-                </BrowserRouter>
-            </div>
+            <BrowserRouter>
+                <div>
+                    <Header />
+                    <Route exact path="/" component={MainPage} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/logout" component={Logout} />
+                </div>
+            </BrowserRouter>
         );
     }
 }
