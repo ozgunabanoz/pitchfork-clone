@@ -1,47 +1,89 @@
 import React, { Component } from 'react';
 import M from 'materialize-css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class Header extends Component {
+    state = {
+        links: ['The Latest', 'Reviews', 'Best New Music', 'Features', 'Levels', 'Video', 'Events']
+    };
+
     componentDidMount() {
         let elems = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(elems, { hover: true, closeOnClick: true });
     }
 
+    renderLinks() {
+        if (this.props.isAuth) {
+            return _.map(this.state.links, link => {
+                return (
+                    <li>
+                        <a>{link}</a>
+                    </li>
+                );
+            });
+        } else {
+            return null;
+        }
+    }
+
     render() {
+        let dropdownLinks = (
+            <ul id="dropdown1" className="dropdown-content">
+                <li>
+                    <Link style={{ color: '#424242' }} to="/login">
+                        Login
+                    </Link>
+                </li>
+                <li>
+                    <Link style={{ color: '#424242' }} to="/register">
+                        Register
+                    </Link>
+                </li>
+            </ul>
+        );
+        let dropdownName = 'Auth';
+
+        if (this.props.isAuth) {
+            dropdownLinks = (
+                <ul id="dropdown1" className="dropdown-content">
+                    <li>
+                        <Link style={{ color: '#424242' }} to="/logout">
+                            Logout
+                        </Link>
+                    </li>
+                </ul>
+            );
+            dropdownName = this.props.username;
+        }
+
         return (
             <nav style={{ margin: '0 auto', width: '98%' }}>
                 <div className="nav-wrapper grey darken-3" style={{ marginTop: '10px' }}>
                     <Link to="/" className="brand-logo left" style={{ marginLeft: '10px' }}>
                         Logo
                     </Link>
-                    <div className="right" style={{ marginRight: '20px' }}>
-                        <a className="dropdown-trigger" data-target="dropdown1">
-                            Login / Register
-                        </a>
-
-                        <ul id="dropdown1" className="dropdown-content">
-                            <li>
-                                <a style={{ color: '#424242' }} href="/login">
-                                    Login
-                                </a>
-                            </li>
-                            <li>
-                                <a style={{ color: '#424242' }} href="/register">
-                                    Register
-                                </a>
-                            </li>
-                            <li>
-                                <a style={{ color: '#424242' }} href="/logout">
-                                    Logout
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul className="right" style={{ marginRight: '20px' }}>
+                        {this.renderLinks()}
+                        <li>
+                            <a className="dropdown-trigger" data-target="dropdown1">
+                                {dropdownName}
+                            </a>
+                            {dropdownLinks}
+                        </li>
+                    </ul>
                 </div>
             </nav>
         );
     }
 }
 
-export default Header;
+const mapStateToProps = state => {
+    return {
+        username: state.regist.username,
+        isAuth: state.regist.username !== null
+    };
+};
+
+export default connect(mapStateToProps)(Header);

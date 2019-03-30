@@ -24,7 +24,7 @@ module.exports = app => {
 
             res.status(200)
                 .cookie('x-auth', token, {
-                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    maxAge: 60 * 60 * 1000,
                     signed: true,
                     path: '/',
                     httpOnly: true
@@ -38,7 +38,6 @@ module.exports = app => {
     app.delete('/api/logout', authenticate, async (req, res) => {
         try {
             await req.user.removeToken(req.token);
-            console.log(req.signedCookies['x-auth']);
             res.cookie('x-auth', '', {
                 maxAge: 0,
                 signed: true,

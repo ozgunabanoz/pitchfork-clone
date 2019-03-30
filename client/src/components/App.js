@@ -1,26 +1,61 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Header from './Header';
 import Register from './Register/Register';
 import MainPage from './MainPage';
 import Login from './Login/Login';
 import Logout from './Logout/Logout';
+import * as actions from './../store/actions/index';
 
 class App extends Component {
+    componentDidMount() {
+        this.props.checkAuth();
+    }
+
     render() {
+        let routes = (
+            <Switch>
+                <Route path="/register" component={Register} />
+                <Route path="/login" component={Login} />
+                <Route path="/" exact component={MainPage} />
+                <Redirect to="/" />
+            </Switch>
+        );
+
+        if (this.props.userName) {
+            routes = (
+                <Switch>
+                    <Route path="/logout" component={Logout} />
+                    <Route path="/" exact component={MainPage} />
+                    <Redirect to="/" />
+                </Switch>
+            );
+        }
+
         return (
-            <BrowserRouter>
-                <div>
-                    <Header />
-                    <Route exact path="/" component={MainPage} />
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/logout" component={Logout} />
-                </div>
-            </BrowserRouter>
+            <div>
+                <Header />
+                {routes}
+            </div>
         );
     }
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        userName: state.regist.username !== null
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        checkAuth: () => dispatch(actions.checkAuthState())
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);

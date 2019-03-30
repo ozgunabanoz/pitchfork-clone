@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import reduxThunk from 'redux-thunk';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
@@ -15,7 +16,9 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
 const app = (
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>
 );
 

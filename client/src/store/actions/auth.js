@@ -30,6 +30,7 @@ export const login = loginInfo => {
 
 export const logout = () => {
     localStorage.removeItem('username');
+    localStorage.removeItem('authExpDate');
     axios.delete('/api/logout').then(() => {});
 
     return {
@@ -37,16 +38,49 @@ export const logout = () => {
     };
 };
 
-export const authStart = userData => {
-    return async dispatch => {
-        localStorage.setItem('username', userData.data.username);
-        dispatch(authSuccess(userData));
+export const checkAuthTimeOut = expSec => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(logout());
+        }, expSec);
     };
 };
 
-export const authSuccess = userData => {
+export const authStart = userData => {
+    return dispatch => {
+        const expSec = 60 * 60 * 1000;
+        let expDate = new Date(new Date().getTime() + expSec);
+        let username = userData.data.username;
+
+        localStorage.setItem('username', username);
+        localStorage.setItem('authExpDate', expDate);
+        dispatch(authSuccess(username));
+        dispatch(checkAuthTimeOut(expSec));
+    };
+};
+
+export const authSuccess = username => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        username: userData.data.username
+        username: username
+    };
+};
+
+export const checkAuthState = () => {
+    return dispatch => {
+        const username = localStorage.getItem('username');
+
+        if (!username) {
+            dispatch(logout());
+        } else {
+            const expDate = new Date(localStorage.getItem('authExpDate'));
+
+            if (expDate < new Date()) {
+                dispatch(logout());
+            } else {
+                dispatch(authSuccess(username));
+                dispatch(checkAuthTimeOut(expDate.getTime() - new Date().getTime()));
+            }
+        }
     };
 };
