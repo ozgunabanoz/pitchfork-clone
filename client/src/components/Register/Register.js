@@ -23,7 +23,8 @@ class Register extends Component {
         this.setState({ registerForm: updatedFormElement });
     };
 
-    onRegisterSubmitHandler = () => {
+    onRegisterSubmitHandler = event => {
+        event.preventDefault();
         this.props.onRegister(this.state.registerForm);
     };
 
@@ -51,17 +52,20 @@ class Register extends Component {
         return (
             <div style={{ marginTop: '20px' }}>
                 <div className="row">
-                    <form className="col s9 offset-s3">{this.renderFields()}</form>
-                </div>
-                <div className="center-align">
-                    <button
-                        className="btn-flat red lighten-2 white-text"
-                        style={{ marginLeft: '10px' }}
-                        type="submit"
-                        onClick={this.onRegisterSubmitHandler}
+                    <form
+                        className="col s9 offset-s3"
+                        onSubmit={this.onRegisterSubmitHandler}
+                        autoComplete="off"
                     >
-                        Submit
-                    </button>
+                        {this.renderFields()}
+                        <button
+                            className="btn-flat red lighten-2 white-text"
+                            style={{ marginLeft: '10px' }}
+                            type="submit"
+                        >
+                            Submit
+                        </button>
+                    </form>
                 </div>
             </div>
         );

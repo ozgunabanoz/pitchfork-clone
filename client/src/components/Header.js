@@ -11,7 +11,11 @@ class Header extends Component {
 
     componentDidMount() {
         let elems = document.querySelectorAll('.dropdown-trigger');
-        M.Dropdown.init(elems, { hover: true, closeOnClick: true });
+        M.Dropdown.init(elems, {
+            coverTrigger: false,
+            hover: true,
+            closeOnClick: true
+        });
     }
 
     renderLinks() {
@@ -64,8 +68,11 @@ class Header extends Component {
                     <Link to="/" className="brand-logo left" style={{ marginLeft: '10px' }}>
                         Logo
                     </Link>
-                    <ul className="right" style={{ marginRight: '20px' }}>
-                        {this.renderLinks()}
+                    <ul className="right" style={{ marginRight: '30px' }}>
+                        <li style={{ marginRight: '20px' }}>{this.renderLinks()}</li>
+                        <li>
+                            <i className="large material-icons">account_circle</i>
+                        </li>
                         <li>
                             <a className="dropdown-trigger" data-target="dropdown1">
                                 {dropdownName}

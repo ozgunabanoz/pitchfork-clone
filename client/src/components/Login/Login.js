@@ -22,7 +22,8 @@ class Login extends Component {
         this.setState({ loginForm: updatedFormElement });
     };
 
-    onLoginSubmitHandler = () => {
+    onLoginSubmitHandler = event => {
+        event.preventDefault();
         this.props.onLogin(this.state.loginForm);
     };
 
@@ -50,17 +51,20 @@ class Login extends Component {
         return (
             <div style={{ marginTop: '20px' }}>
                 <div className="row">
-                    <form className="col s9 offset-s3">{this.renderFields()}</form>
-                </div>
-                <div className="center-align">
-                    <button
-                        className="btn-flat red lighten-2 white-text"
-                        style={{ marginLeft: '10px' }}
-                        type="submit"
-                        onClick={this.onLoginSubmitHandler}
+                    <form
+                        className="col s9 offset-s3"
+                        onSubmit={this.onLoginSubmitHandler}
+                        autoComplete="off"
                     >
-                        Submit
-                    </button>
+                        {this.renderFields()}
+                        <button
+                            className="btn-flat red lighten-2 white-text"
+                            style={{ marginLeft: '10px' }}
+                            type="submit"
+                        >
+                            Submit
+                        </button>
+                    </form>
                 </div>
             </div>
         );
