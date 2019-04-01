@@ -7,6 +7,7 @@ import Register from './Register/Register';
 import MainPage from './MainPage';
 import Login from './Login/Login';
 import Logout from './Logout/Logout';
+import Reviews from './Reviews';
 import * as actions from './../store/actions/index';
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
             routes = (
                 <Switch>
                     <Route path="/logout" component={Logout} />
+                    <Route path="/reviews" component={Reviews} />
                     <Route path="/" exact component={MainPage} />
                     <Redirect to="/" />
                 </Switch>

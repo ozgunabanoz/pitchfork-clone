@@ -6,7 +6,15 @@ import _ from 'lodash';
 
 class Header extends Component {
     state = {
-        links: ['The Latest', 'Reviews', 'Best New Music', 'Features', 'Levels', 'Video', 'Events']
+        links: [
+            { name: 'The Latest', url: '/latest' },
+            { name: 'Reviews', url: '/reviews' },
+            { name: 'Best New Music', url: '/bestnewmusic' },
+            { name: 'Features', url: '/features' },
+            { name: 'Levels', url: '/levels' },
+            { name: 'Video', url: '/video' },
+            { name: 'Events', url: '/events' }
+        ]
     };
 
     componentDidMount() {
@@ -22,8 +30,8 @@ class Header extends Component {
         if (this.props.isAuth) {
             return _.map(this.state.links, link => {
                 return (
-                    <li>
-                        <a>{link}</a>
+                    <li key={link.name}>
+                        <Link to={link.url}>{link.name}</Link>
                     </li>
                 );
             });
