@@ -9,9 +9,11 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import authReducer from './store/reducers/auth';
+import reviewReducer from './store/reducers/review';
 
 const rootReducer = combineReducers({
-    regist: authReducer
+    regist: authReducer,
+    reviewStore: reviewReducer
 });
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
 const app = (
