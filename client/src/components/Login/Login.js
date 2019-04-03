@@ -36,7 +36,9 @@ class Login extends Component {
                             id={name}
                             type={type}
                             value={this.state.loginForm[name]}
-                            onChange={event => this.inputChangedHandler(event, name)}
+                            onChange={event =>
+                                this.inputChangedHandler(event, name)
+                            }
                         />
                         <label className="active" for={name}>
                             {label}

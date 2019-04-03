@@ -52,7 +52,9 @@ userSchema.methods.toJSON = function() {
 userSchema.methods.generateToken = function() {
     let user = this;
     let access = 'auth';
-    let token = jwt.sign({ _id: user._id.toString(), access }, process.env.JWT_SECRET).toString();
+    let token = jwt
+        .sign({ _id: user._id.toString(), access }, process.env.JWT_SECRET)
+        .toString();
 
     user.tokens = user.tokens.concat([{ access, token }]);
 

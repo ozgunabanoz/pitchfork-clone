@@ -37,7 +37,9 @@ class Register extends Component {
                             id={name}
                             type={type}
                             value={this.state.registerForm[name]}
-                            onChange={event => this.inputChangedHandler(event, name)}
+                            onChange={event =>
+                                this.inputChangedHandler(event, name)
+                            }
                         />
                         <label className="active" for={name}>
                             {label}

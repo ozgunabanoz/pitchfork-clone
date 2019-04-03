@@ -3,47 +3,61 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import * as actions from './../store/actions/index';
-import albumCover from './../assets/albumCovers/36Chambers.jpg'; // figure out a neat way to get album covers
+
+const importAll = r => {
+    return r.keys().map(r);
+};
+
+const images = importAll(
+    require.context('./../assets/albumCovers/', false, /\.(png|jpe?g|svg)$/)
+); // figure out how to assign specific
+// images to specific review entries
 
 class Reviews extends Component {
     componentDidMount() {
         this.props.onGetReviews();
     }
 
-    renderReviews() {
-        console.log(this.props.reviews);
+    renderColumns() {
         return _.map(this.props.reviews, review => {
-            // this part is incomplete and only works for just 6 reviews, correct this at a later date
-            // and also make the cards size fixed
             return (
-                <div className="col s2">
-                    <div className="card">
+                <div key={review.albumTitle} className="col s2">
+                    <div className="card z-depth-0">
                         <div className="card-image">
-                            <img src={albumCover} />
+                            <img src="" />
                         </div>
                         <div className="card-content">
-                            <p style={{ fontSize: 'medium', fontWeight: 'bold' }}>
+                            <p
+                                style={{
+                                    fontSize: 'x-small',
+                                    fontWeight: 'bold'
+                                }}
+                            >
                                 {review.albumArtist}
                             </p>
                             <p
                                 style={{
-                                    fontSize: 'medium',
-                                    fontStyle: 'italic',
-                                    marginTop: '5px'
+                                    fontSize: 'x-small',
+                                    fontStyle: 'italic'
                                 }}
                             >
                                 {review.albumTitle}
                             </p>
                             <p
                                 style={{
-                                    fontSize: 'x-small',
+                                    fontSize: 'xx-small',
                                     fontWeight: 'bold',
                                     marginTop: '10px'
                                 }}
                             >
                                 {review.genre}
                             </p>
-                            <p style={{ fontSize: 'x-small', fontWeight: 'bold' }}>
+                            <p
+                                style={{
+                                    fontSize: 'xx-small',
+                                    fontWeight: 'bold'
+                                }}
+                            >
                                 By: {review.writer}
                             </p>
                         </div>
@@ -53,13 +67,35 @@ class Reviews extends Component {
         });
     }
 
+    renderReviews() {
+        let reviewCols = this.renderColumns();
+        let reviewRows = [];
+
+        for (let i = 0; i < Math.ceil(reviewCols.length / 6); i++) {
+            let columns = [];
+
+            for (let j = 0; j < reviewCols.length; j++) {
+                if (Math.floor(j / 6) === i) {
+                    columns.push(reviewCols[j]);
+                }
+            }
+
+            reviewRows.push(
+                <div key={i} className="row">
+                    {columns}
+                </div>
+            );
+        }
+        return reviewRows;
+    }
+
     render() {
         return (
             <div
                 className="container"
                 style={{ width: '80%', marginTop: '80px', textAlign: 'center' }}
             >
-                <div className="row">{this.renderReviews()}</div>
+                {this.renderReviews()}
             </div>
         );
     }

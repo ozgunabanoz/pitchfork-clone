@@ -72,17 +72,31 @@ class Header extends Component {
 
         return (
             <nav style={{ margin: '0 auto', width: '98%' }}>
-                <div className="nav-wrapper grey darken-3" style={{ marginTop: '10px' }}>
-                    <Link to="/" className="brand-logo left" style={{ marginLeft: '10px' }}>
+                <div
+                    className="nav-wrapper grey darken-3"
+                    style={{ marginTop: '10px' }}
+                >
+                    <Link
+                        to="/"
+                        className="brand-logo left"
+                        style={{ marginLeft: '10px' }}
+                    >
                         Logo
                     </Link>
                     <ul className="right" style={{ marginRight: '30px' }}>
-                        <li style={{ marginRight: '20px' }}>{this.renderLinks()}</li>
-                        <li>
-                            <i className="large material-icons">account_circle</i>
+                        <li style={{ marginRight: '20px' }}>
+                            {this.renderLinks()}
                         </li>
                         <li>
-                            <a className="dropdown-trigger" data-target="dropdown1">
+                            <i className="large material-icons">
+                                account_circle
+                            </i>
+                        </li>
+                        <li>
+                            <a
+                                className="dropdown-trigger"
+                                data-target="dropdown1"
+                            >
                                 {dropdownName}
                             </a>
                             {dropdownLinks}

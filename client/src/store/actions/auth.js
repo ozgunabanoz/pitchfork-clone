@@ -7,7 +7,10 @@ export const postUser = registerForm => {
         try {
             await axios.post('/api/post_user', registerForm);
 
-            let loginInfo = { username: registerForm.username, password: registerForm.password };
+            let loginInfo = {
+                username: registerForm.username,
+                password: registerForm.password
+            };
 
             dispatch(login(loginInfo));
         } catch (e) {
@@ -79,7 +82,9 @@ export const checkAuthState = () => {
                 dispatch(logout());
             } else {
                 dispatch(authSuccess(username));
-                dispatch(checkAuthTimeOut(expDate.getTime() - new Date().getTime()));
+                dispatch(
+                    checkAuthTimeOut(expDate.getTime() - new Date().getTime())
+                );
             }
         }
     };

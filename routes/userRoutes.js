@@ -19,7 +19,10 @@ module.exports = app => {
     app.post('/api/login', async (req, res) => {
         try {
             let body = _.pick(req.body, ['username', 'password']);
-            let user = await User.findByLoginCreds(body.username, body.password);
+            let user = await User.findByLoginCreds(
+                body.username,
+                body.password
+            );
             let token = await user.generateToken();
 
             res.status(200)
