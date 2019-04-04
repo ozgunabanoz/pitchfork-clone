@@ -31,3 +31,10 @@ export const postReviews = reviewSubmitForm => {
         }
     };
 };
+
+export const onClickReview = review => {
+    return {
+        type: actionTypes.ON_CLICK_REVIEW,
+        clickedReview: review
+    };
+};

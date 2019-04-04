@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
+
+import * as actions from './../../store/actions/index';
 
 const importAll = r => {
     return r.keys().map(r);
@@ -12,8 +15,19 @@ const images = importAll(
 // images to specific review entries
 
 class ReviewForm extends Component {
+    onReviewClick = review => {
+        console.log(review);
+        this.props.onClickReview(review);
+    };
+
     renderColumns() {
         return _.map(this.props.reviews, review => {
+            let url =
+                '/reviews/albums/' +
+                review.albumArtist +
+                '/' +
+                review.albumTitle;
+            url = url.replace(/ /g, '-');
             return (
                 <div key={review.albumTitle} className="col s2">
                     <div className="card z-depth-0">
@@ -34,7 +48,14 @@ class ReviewForm extends Component {
                                         fontStyle: 'italic'
                                     }}
                                 >
-                                    {review.albumTitle}
+                                    <Link
+                                        onClick={() =>
+                                            this.onReviewClick(review)
+                                        }
+                                        to={url}
+                                    >
+                                        {review.albumTitle}
+                                    </Link>
                                 </p>
                             </div>
                             <div
@@ -87,4 +108,13 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(ReviewForm);
+const mapDispatchToProps = dispatch => {
+    return {
+        onClickReview: review => dispatch(actions.onClickReview(review))
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ReviewForm);

@@ -8,6 +8,7 @@ import MainPage from './MainPage';
 import Login from './Login/Login';
 import Logout from './Logout/Logout';
 import Reviews from './Reviews/Reviews';
+import ReviewMainPage from './Reviews/ReviewMainPage';
 import * as actions from './../store/actions/index';
 
 class App extends Component {
@@ -18,9 +19,9 @@ class App extends Component {
     render() {
         let routes = (
             <Switch>
+                <Route exact path="/" component={MainPage} />
                 <Route path="/register" component={Register} />
                 <Route path="/login" component={Login} />
-                <Route path="/" exact component={MainPage} />
                 <Redirect to="/" />
             </Switch>
         );
@@ -28,9 +29,10 @@ class App extends Component {
         if (this.props.userName) {
             routes = (
                 <Switch>
+                    <Route exact path="/" component={MainPage} />
                     <Route path="/logout" component={Logout} />
-                    <Route path="/reviews" component={Reviews} />
-                    <Route path="/" exact component={MainPage} />
+                    <Route exact path="/reviews" component={Reviews} />
+                    <Route path="/reviews/albums" component={ReviewMainPage} />
                     <Redirect to="/" />
                 </Switch>
             );
