@@ -1,2 +1,2 @@
 export { postUser, login, logout, checkAuthState } from './auth';
-export { getReviews } from './review';
+export { getReviews, postReviews } from './review';

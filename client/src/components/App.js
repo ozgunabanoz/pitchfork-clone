@@ -7,7 +7,7 @@ import Register from './Register/Register';
 import MainPage from './MainPage';
 import Login from './Login/Login';
 import Logout from './Logout/Logout';
-import Reviews from './Reviews';
+import Reviews from './Reviews/Reviews';
 import * as actions from './../store/actions/index';
 
 class App extends Component {

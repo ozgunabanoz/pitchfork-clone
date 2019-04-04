@@ -11,8 +11,12 @@ module.exports = app => {
                 'albumTitle',
                 'albumArtist',
                 'genre',
-                'writer'
+                'review'
             ]);
+            body = {
+                ...body,
+                writer: req.user.username
+            };
             let review = new Review(body);
 
             await review.save();

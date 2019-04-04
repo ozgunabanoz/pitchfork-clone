@@ -20,3 +20,14 @@ export const fetchReviews = reviewsData => {
         reviews: reviewsData
     };
 };
+
+export const postReviews = reviewSubmitForm => {
+    return async dispatch => {
+        try {
+            await axios.post('/api/reviews', reviewSubmitForm);
+            dispatch(getReviews());
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
