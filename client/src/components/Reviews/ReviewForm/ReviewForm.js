@@ -3,20 +3,24 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
-import * as actions from './../../store/actions/index';
+import * as actions from '../../../store/actions/index';
+import './ReviewForm.css';
 
 const importAll = r => {
     return r.keys().map(r);
 };
 
 const images = importAll(
-    require.context('./../../assets/albumCovers/', false, /\.(png|jpe?g|svg)$/)
+    require.context(
+        './../../../assets/albumCovers/',
+        false,
+        /\.(png|jpe?g|svg)$/
+    )
 ); // figure out how to assign specific
 // images to specific review entries
 
 class ReviewForm extends Component {
     onReviewClick = review => {
-        console.log(review);
         this.props.onClickReview(review);
     };
 
@@ -35,19 +39,9 @@ class ReviewForm extends Component {
                             <img src="" />
                         </div>
                         <div className="card-content">
-                            <div style={{ fontSize: 'x-small' }}>
-                                <p
-                                    style={{
-                                        fontWeight: 'bold'
-                                    }}
-                                >
-                                    {review.albumArtist}
-                                </p>
-                                <p
-                                    style={{
-                                        fontStyle: 'italic'
-                                    }}
-                                >
+                            <div className="artisttitle">
+                                <p className="artist">{review.albumArtist}</p>
+                                <p className="albumtitle">
                                     <Link
                                         onClick={() =>
                                             this.onReviewClick(review)
@@ -58,13 +52,7 @@ class ReviewForm extends Component {
                                     </Link>
                                 </p>
                             </div>
-                            <div
-                                style={{
-                                    fontSize: 'xx-small',
-                                    fontWeight: 'bold',
-                                    marginTop: '10px'
-                                }}
-                            >
+                            <div className="genrewriter">
                                 <p>{review.genre}</p>
                                 <p>By: {review.writer}</p>
                             </div>

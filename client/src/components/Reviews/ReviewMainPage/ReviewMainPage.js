@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import ReviewEditModal from './ReviewEditModal/ReviewEditModal';
+import './ReviewMainPage.css';
+
 class ReviewMainPage extends Component {
     // continue styling later
     formatReview = () => {
@@ -20,15 +23,8 @@ class ReviewMainPage extends Component {
 
     render() {
         return (
-            <div
-                className="container"
-                style={{
-                    width: '80%',
-                    marginTop: '50px',
-                    fontSize: 'small',
-                    textAlign: 'justify'
-                }}
-            >
+            <div className="container">
+                <ReviewEditModal clickedReviewProp={this.props.clickedReview} />
                 <h3>{this.props.clickedReview.albumTitle}</h3>
                 <h3>{this.props.clickedReview.albumArtist}</h3>
                 <h5>By: {this.props.clickedReview.writer}</h5>

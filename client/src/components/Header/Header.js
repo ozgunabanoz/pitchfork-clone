@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import './Header.css';
+
 class Header extends Component {
     state = {
         links: [
@@ -44,12 +46,12 @@ class Header extends Component {
         let dropdownLinks = (
             <ul id="dropdown1" className="dropdown-content">
                 <li>
-                    <Link style={{ color: '#424242' }} to="/login">
+                    <Link to="/login" style={{ color: '#424242' }}>
                         Login
                     </Link>
                 </li>
                 <li>
-                    <Link style={{ color: '#424242' }} to="/register">
+                    <Link to="/register" style={{ color: '#424242' }}>
                         Register
                     </Link>
                 </li>
@@ -61,7 +63,7 @@ class Header extends Component {
             dropdownLinks = (
                 <ul id="dropdown1" className="dropdown-content">
                     <li>
-                        <Link style={{ color: '#424242' }} to="/logout">
+                        <Link to="/logout" style={{ color: '#424242' }}>
                             Logout
                         </Link>
                     </li>
@@ -71,22 +73,13 @@ class Header extends Component {
         }
 
         return (
-            <nav style={{ margin: '0 auto', width: '98%' }}>
-                <div
-                    className="nav-wrapper grey darken-3"
-                    style={{ marginTop: '10px' }}
-                >
-                    <Link
-                        to="/"
-                        className="brand-logo left"
-                        style={{ marginLeft: '10px' }}
-                    >
-                        Logo
+            <nav>
+                <div className="nav-wrapper grey darken-3">
+                    <Link to="/" className="brand-logo left">
+                        Pitchfork
                     </Link>
-                    <ul className="right" style={{ marginRight: '30px' }}>
-                        <li style={{ marginRight: '20px' }}>
-                            {this.renderLinks()}
-                        </li>
+                    <ul className="right">
+                        <li className="links">{this.renderLinks()}</li>
                         <li>
                             <i className="large material-icons">
                                 account_circle

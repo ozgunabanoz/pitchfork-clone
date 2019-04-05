@@ -1,0 +1,24 @@
+nav {
+    margin: 0 auto;
+    width: 98%;
+}
+
+.nav-wrapper {
+    margin-top: 10px;
+}
+
+.brand-logo {
+    margin-left: 10px;
+}
+
+.right {
+    margin-right: 30px;
+}
+
+.links {
+    margin-right: 20px;
+}
+
+.authlink {
+    color: #424242;
+}

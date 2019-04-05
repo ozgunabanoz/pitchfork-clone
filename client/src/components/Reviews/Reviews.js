@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions/index';
-import ReviewModal from './ReviewModal';
-import ReviewForm from './ReviewForm';
+import ReviewModal from './ReviewModal/ReviewModal';
+import ReviewForm from './ReviewForm/ReviewForm';
+import './Reviews.css';
 
 class Reviews extends Component {
     componentDidMount() {
@@ -12,10 +13,7 @@ class Reviews extends Component {
 
     render() {
         return (
-            <div
-                className="container"
-                style={{ width: '80%', marginTop: '50px', textAlign: 'center' }}
-            >
+            <div className="container">
                 <ReviewModal />
                 <ReviewForm />
             </div>

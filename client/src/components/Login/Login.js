@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import FIELDS from './fields';
 import * as actions from './../../store/actions/index';
+import './Login.css';
 
 class Login extends Component {
     state = {
@@ -51,7 +52,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div style={{ marginTop: '20px' }}>
+            <div className="firstdiv">
                 <div className="row">
                     <form
                         className="col s9 offset-s3"
@@ -61,7 +62,6 @@ class Login extends Component {
                         {this.renderFields()}
                         <button
                             className="btn-flat red lighten-2 white-text"
-                            style={{ marginLeft: '10px' }}
                             type="submit"
                         >
                             Submit

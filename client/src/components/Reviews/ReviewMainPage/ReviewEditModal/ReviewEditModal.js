@@ -2,53 +2,41 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import { connect } from 'react-redux';
 
-import * as actions from './../../store/actions/index';
+import * as actions from '../../../../store/actions/index';
+import './ReviewEditModal.css';
 
-class ReviewModal extends Component {
+class ReviewEditModal extends Component {
     state = {
-        reviewSubmitForm: {
-            albumArtist: '',
-            albumTitle: '',
-            review: '',
-            genre: ''
-        }
+        reviewToEdit: {}
     };
 
     componentDidMount() {
         let elems = document.querySelectorAll('.modal');
         M.Modal.init(elems);
+        this.setState({ reviewToEdit: this.props.clickedReviewProp });
     }
 
-    inputChangedHandler = (event, inputEntity) => {
-        const updatedFormElement = {
-            ...this.state.reviewSubmitForm,
+    onChangeHandler = (event, inputEntity) => {
+        const updElement = {
+            ...this.state.reviewToEdit,
             [inputEntity]: event.target.value
         };
 
-        this.setState({ reviewSubmitForm: updatedFormElement });
+        this.setState({ reviewToEdit: updElement });
     };
 
     onSubmitHandler = event => {
         event.preventDefault();
-        this.props.onPostReviews(this.state.reviewSubmitForm);
-        this.setState({
-            reviewSubmitForm: {
-                albumArtist: '',
-                albumTitle: '',
-                review: '',
-                genre: ''
-            }
-        });
+        this.props.onUpdateReview(this.state.reviewToEdit);
     };
 
     render() {
         return (
             <div className="row">
-                <div className="col s2 offset-s10">
+                <div className="col s2 offset-s12">
                     <a
                         className="waves-effect waves-light btn modal-trigger"
                         href="#modal1"
-                        style={{ backgroundColor: '#424242' }}
                     >
                         <i className="small material-icons">create</i>
                     </a>
@@ -56,61 +44,49 @@ class ReviewModal extends Component {
                     <div id="modal1" className="modal">
                         <div className="modal-content">
                             <form
-                                onSubmit={this.onSubmitHandler}
                                 autoComplete="off"
+                                onSubmit={this.onSubmitHandler}
                             >
                                 <input
                                     placeholder="Artist"
+                                    value={this.state.reviewToEdit.albumArtist}
                                     onChange={event =>
-                                        this.inputChangedHandler(
+                                        this.onChangeHandler(
                                             event,
                                             'albumArtist'
                                         )
                                     }
-                                    value={
-                                        this.state.reviewSubmitForm.albumArtist
-                                    }
                                 />
                                 <input
                                     placeholder="Album Title"
+                                    value={this.state.reviewToEdit.albumTitle}
                                     onChange={event =>
-                                        this.inputChangedHandler(
+                                        this.onChangeHandler(
                                             event,
                                             'albumTitle'
                                         )
                                     }
-                                    value={
-                                        this.state.reviewSubmitForm.albumTitle
-                                    }
                                 />
                                 <textarea
-                                    style={{ resize: 'none', height: '200px' }}
                                     placeholder="Review"
+                                    value={this.state.reviewToEdit.review}
                                     onChange={event =>
-                                        this.inputChangedHandler(
-                                            event,
-                                            'review'
-                                        )
+                                        this.onChangeHandler(event, 'review')
                                     }
-                                    value={this.state.reviewSubmitForm.review}
                                 />
                                 <input
                                     placeholder="Genre"
+                                    value={this.state.reviewToEdit.genre}
                                     onChange={event =>
-                                        this.inputChangedHandler(event, 'genre')
+                                        this.onChangeHandler(event, 'genre')
                                     }
-                                    value={this.state.reviewSubmitForm.genre}
                                 />
                                 <button
                                     href="#!"
                                     className="modal-close right waves-effect waves-green btn"
-                                    style={{
-                                        backgroundColor: '#424242',
-                                        marginTop: '10px'
-                                    }}
                                     type="submit"
                                 >
-                                    Send
+                                    Edit
                                 </button>
                             </form>
                         </div>
@@ -124,12 +100,11 @@ class ReviewModal extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onPostReviews: reviewSubmitForm =>
-            dispatch(actions.postReviews(reviewSubmitForm))
+        onUpdateReview: review => dispatch(actions.updateReview(review))
     };
 };
 
 export default connect(
     null,
     mapDispatchToProps
-)(ReviewModal);
+)(ReviewEditModal);

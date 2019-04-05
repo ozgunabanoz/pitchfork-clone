@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Header from './Header';
+import Header from './Header/Header';
 import Register from './Register/Register';
 import MainPage from './MainPage';
 import Login from './Login/Login';
 import Logout from './Logout/Logout';
 import Reviews from './Reviews/Reviews';
-import ReviewMainPage from './Reviews/ReviewMainPage';
+import ReviewMainPage from './Reviews/ReviewMainPage/ReviewMainPage';
 import * as actions from './../store/actions/index';
 
 class App extends Component {

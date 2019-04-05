@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const { ObjectID } = require('mongodb');
 
 let { Review } = require('./../models/reviews');
 const { authenticate } = require('./../middleware/validateAuth');
@@ -25,6 +26,7 @@ module.exports = app => {
             console.log(e);
         }
     });
+
     app.get('/api/reviews', authenticate, async (req, res) => {
         try {
             let reviews = await Review.find({});
@@ -33,5 +35,29 @@ module.exports = app => {
         } catch (e) {
             console.log(e);
         }
+    });
+
+    app.patch('/api/reviews', authenticate, async (req, res) => {
+        try {
+            let reviewToEdit = _.pick(req.body, [
+                'albumArtist',
+                'albumTitle',
+                'genre',
+                'review'
+            ]);
+            let _id = req.body._id;
+
+            if (!ObjectID.isValid(_id)) {
+                return res.status(404).send();
+            }
+
+            let review = await Review.findOneAndUpdate(
+                { _id: _id, writer: req.user.username },
+                { $set: reviewToEdit },
+                { new: true }
+            );
+
+            res.status(200).send(review);
+        } catch (e) {}
     });
 };

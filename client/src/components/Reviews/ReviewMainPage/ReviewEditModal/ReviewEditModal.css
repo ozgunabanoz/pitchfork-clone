@@ -1,0 +1,12 @@
+.waves-effect {
+    background-color: #424242;
+}
+
+.modal-close {
+    margin-top: 10px;
+}
+
+textarea {
+    resize: none;
+    height: 200px;
+}

@@ -38,3 +38,15 @@ export const onClickReview = review => {
         clickedReview: review
     };
 };
+
+export const updateReview = review => {
+    // solve the review page refreshing issue after update
+    return async dispatch => {
+        try {
+            let returnedReview = await axios.patch('/api/reviews', review);
+            dispatch(getReviews());
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
