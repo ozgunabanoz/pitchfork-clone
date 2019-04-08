@@ -46,10 +46,7 @@ class ReviewModal extends Component {
         return (
             <div className="row">
                 <div className="col s2 offset-s12">
-                    <a
-                        className="waves-effect waves-light btn modal-trigger"
-                        href="#modal1"
-                    >
+                    <a className="btn-flat modal-trigger" href="#modal1">
                         <i className="small material-icons">create</i>
                     </a>
 
@@ -102,7 +99,7 @@ class ReviewModal extends Component {
                                 />
                                 <button
                                     href="#!"
-                                    className="modal-close right waves-effect waves-green btn"
+                                    className="modal-close right btn-flat"
                                     type="submit"
                                 >
                                     Send

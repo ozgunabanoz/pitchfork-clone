@@ -5,10 +5,12 @@ nav {
 
 .nav-wrapper {
     margin-top: 10px;
+    background-color: #1a1a1a;
 }
 
 .brand-logo {
     margin-left: 10px;
+    margin-top: 10px;
 }
 
 .right {
@@ -20,5 +22,5 @@ nav {
 }
 
 .authlink {
-    color: #424242;
+    color: #1a1a1a;
 }

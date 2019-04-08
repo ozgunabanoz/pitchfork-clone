@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ReviewEditModal from './ReviewEditModal/ReviewEditModal';
+import DeleteReviewModal from './DeleteReviewModal/DeleteReviewModal';
 import './ReviewMainPage.css';
 
 class ReviewMainPage extends Component {
@@ -23,8 +24,16 @@ class ReviewMainPage extends Component {
 
     render() {
         return (
+            // make this modals pop from right side like a dropdown thing you know what i mean
             <div className="container">
-                <ReviewEditModal clickedReviewProp={this.props.clickedReview} />
+                <div className="row">
+                    <ReviewEditModal
+                        clickedReviewProp={this.props.clickedReview}
+                    />
+                    <DeleteReviewModal
+                        clickedReviewProp={this.props.clickedReview}
+                    />
+                </div>
                 <h3>{this.props.clickedReview.albumTitle}</h3>
                 <h3>{this.props.clickedReview.albumArtist}</h3>
                 <h5>By: {this.props.clickedReview.writer}</h5>

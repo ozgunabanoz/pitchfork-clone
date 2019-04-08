@@ -60,10 +60,7 @@ class Login extends Component {
                         autoComplete="off"
                     >
                         {this.renderFields()}
-                        <button
-                            className="btn-flat red lighten-2 white-text"
-                            type="submit"
-                        >
+                        <button className="btn-flat" type="submit">
                             Submit
                         </button>
                     </form>

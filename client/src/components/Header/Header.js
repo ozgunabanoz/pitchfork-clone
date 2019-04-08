@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import './Header.css';
+import Logo from './../../assets/p4klogo.JPG';
 
 class Header extends Component {
     state = {
@@ -46,12 +47,12 @@ class Header extends Component {
         let dropdownLinks = (
             <ul id="dropdown1" className="dropdown-content">
                 <li>
-                    <Link to="/login" style={{ color: '#424242' }}>
+                    <Link to="/login" style={{ color: '#1a1a1a' }}>
                         Login
                     </Link>
                 </li>
                 <li>
-                    <Link to="/register" style={{ color: '#424242' }}>
+                    <Link to="/register" style={{ color: '#1a1a1a' }}>
                         Register
                     </Link>
                 </li>
@@ -63,7 +64,7 @@ class Header extends Component {
             dropdownLinks = (
                 <ul id="dropdown1" className="dropdown-content">
                     <li>
-                        <Link to="/logout" style={{ color: '#424242' }}>
+                        <Link to="/logout" style={{ color: '#1a1a1a' }}>
                             Logout
                         </Link>
                     </li>
@@ -74,9 +75,9 @@ class Header extends Component {
 
         return (
             <nav>
-                <div className="nav-wrapper grey darken-3">
+                <div className="nav-wrapper">
                     <Link to="/" className="brand-logo left">
-                        Pitchfork
+                        <img src={Logo} />
                     </Link>
                     <ul className="right">
                         <li className="links">{this.renderLinks()}</li>

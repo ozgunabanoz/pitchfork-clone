@@ -1,13 +1,10 @@
 .modal-trigger {
     background-color: #1a1a1a;
+    color: white;
 }
 
 .modal-close {
     margin-top: 10px;
+    margin-right: 10px;
     background-color: #1a1a1a;
-}
-
-textarea {
-    resize: none;
-    height: 200px;
 }

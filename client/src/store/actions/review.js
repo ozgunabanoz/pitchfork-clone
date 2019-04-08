@@ -40,10 +40,21 @@ export const onClickReview = review => {
 };
 
 export const updateReview = review => {
-    // solve the review page refreshing issue after update
     return async dispatch => {
         try {
-            let returnedReview = await axios.patch('/api/reviews', review);
+            let returnedData = await axios.patch('/api/reviews', review);
+
+            dispatch(onClickReview(returnedData.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const deleteReview = review => {
+    return async dispatch => {
+        try {
+            await axios.delete('/api/reviews', { data: review });
             dispatch(getReviews());
         } catch (e) {
             console.log(e);

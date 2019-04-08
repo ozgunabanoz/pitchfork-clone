@@ -10,6 +10,7 @@ import Logout from './Logout/Logout';
 import Reviews from './Reviews/Reviews';
 import ReviewMainPage from './Reviews/ReviewMainPage/ReviewMainPage';
 import * as actions from './../store/actions/index';
+import './App.css';
 
 class App extends Component {
     componentDidMount() {
@@ -17,11 +18,11 @@ class App extends Component {
     }
 
     render() {
-        let routes = (
+        let routes = ( // figure out the refreshing issue
             <Switch>
-                <Route exact path="/" component={MainPage} />
                 <Route path="/register" component={Register} />
                 <Route path="/login" component={Login} />
+                <Route path="/" exact component={MainPage} />
                 <Redirect to="/" />
             </Switch>
         );
@@ -29,17 +30,17 @@ class App extends Component {
         if (this.props.userName) {
             routes = (
                 <Switch>
-                    <Route exact path="/" component={MainPage} />
-                    <Route path="/logout" component={Logout} />
-                    <Route exact path="/reviews" component={Reviews} />
+                    <Route path="/reviews" exact component={Reviews} />
                     <Route path="/reviews/albums" component={ReviewMainPage} />
+                    <Route path="/logout" component={Logout} />
+                    <Route path="/" exact component={MainPage} />
                     <Redirect to="/" />
                 </Switch>
             );
         }
 
         return (
-            <div>
+            <div className="App">
                 <Header />
                 {routes}
             </div>

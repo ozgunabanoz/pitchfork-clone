@@ -32,66 +32,55 @@ class ReviewEditModal extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col s2 offset-s12">
-                    <a
-                        className="waves-effect waves-light btn modal-trigger"
-                        href="#modal1"
-                    >
-                        <i className="small material-icons">create</i>
-                    </a>
+            <div className="col s1 offset-s10">
+                <a className="btn-flat modal-trigger" href="#modal1">
+                    <i className="small material-icons">create</i>
+                </a>
 
-                    <div id="modal1" className="modal">
-                        <div className="modal-content">
-                            <form
-                                autoComplete="off"
-                                onSubmit={this.onSubmitHandler}
+                <div id="modal1" className="modal">
+                    <div className="modal-content">
+                        <form
+                            autoComplete="off"
+                            onSubmit={this.onSubmitHandler}
+                        >
+                            <input
+                                placeholder="Artist"
+                                value={this.state.reviewToEdit.albumArtist}
+                                onChange={event =>
+                                    this.onChangeHandler(event, 'albumArtist')
+                                }
+                            />
+                            <input
+                                placeholder="Album Title"
+                                value={this.state.reviewToEdit.albumTitle}
+                                onChange={event =>
+                                    this.onChangeHandler(event, 'albumTitle')
+                                }
+                            />
+                            <textarea
+                                placeholder="Review"
+                                value={this.state.reviewToEdit.review}
+                                onChange={event =>
+                                    this.onChangeHandler(event, 'review')
+                                }
+                            />
+                            <input
+                                placeholder="Genre"
+                                value={this.state.reviewToEdit.genre}
+                                onChange={event =>
+                                    this.onChangeHandler(event, 'genre')
+                                }
+                            />
+                            <button
+                                href="#!"
+                                className="modal-close right btn-flat"
+                                type="submit"
                             >
-                                <input
-                                    placeholder="Artist"
-                                    value={this.state.reviewToEdit.albumArtist}
-                                    onChange={event =>
-                                        this.onChangeHandler(
-                                            event,
-                                            'albumArtist'
-                                        )
-                                    }
-                                />
-                                <input
-                                    placeholder="Album Title"
-                                    value={this.state.reviewToEdit.albumTitle}
-                                    onChange={event =>
-                                        this.onChangeHandler(
-                                            event,
-                                            'albumTitle'
-                                        )
-                                    }
-                                />
-                                <textarea
-                                    placeholder="Review"
-                                    value={this.state.reviewToEdit.review}
-                                    onChange={event =>
-                                        this.onChangeHandler(event, 'review')
-                                    }
-                                />
-                                <input
-                                    placeholder="Genre"
-                                    value={this.state.reviewToEdit.genre}
-                                    onChange={event =>
-                                        this.onChangeHandler(event, 'genre')
-                                    }
-                                />
-                                <button
-                                    href="#!"
-                                    className="modal-close right waves-effect waves-green btn"
-                                    type="submit"
-                                >
-                                    Edit
-                                </button>
-                            </form>
-                        </div>
-                        <div className="modal-footer" />
+                                Edit
+                            </button>
+                        </form>
                     </div>
+                    <div className="modal-footer" />
                 </div>
             </div>
         );

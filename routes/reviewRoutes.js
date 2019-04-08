@@ -37,6 +37,28 @@ module.exports = app => {
         }
     });
 
+    app.delete('/api/reviews', async (req, res) => {
+        try {
+            let _id = req.body._id;
+
+            if (!ObjectID.isValid(_id)) {
+                return res.status(404).send();
+            }
+
+            let doc = await Review.findOneAndDelete({
+                _id: _id
+            });
+
+            if (!doc) {
+                return res.send().status(404);
+            }
+
+            res.send({ doc }).status(200);
+        } catch (e) {
+            res.status(400).send(e);
+        }
+    });
+
     app.patch('/api/reviews', authenticate, async (req, res) => {
         try {
             let reviewToEdit = _.pick(req.body, [
