@@ -1,0 +1,17 @@
+.newstitle {
+    font-size: x-small;
+}
+
+.newstitle .ntitle {
+    font-weight: bold;
+}
+
+.newstitle .nheadline {
+    font-style: italic;
+}
+
+.newswriter {
+    font-size: xx-small;
+    font-weight: bold;
+    margin-top: 10px;
+}

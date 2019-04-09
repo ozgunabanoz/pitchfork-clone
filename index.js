@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 let { mongoose } = require('./db/mongoose');
 require('./models/user');
 require('./models/reviews');
+require('./models/news');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -15,5 +16,6 @@ app.use(cookieParser(process.env.COOKIE_SIGN));
 
 require('./routes/userRoutes')(app);
 require('./routes/reviewRoutes')(app);
+require('./routes/newsRoutes')(app);
 
 app.listen(PORT);

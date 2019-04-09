@@ -10,10 +10,12 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import authReducer from './store/reducers/auth';
 import reviewReducer from './store/reducers/review';
+import newsReducer from './store/reducers/news';
 
 const rootReducer = combineReducers({
     regist: authReducer,
-    reviewStore: reviewReducer
+    reviewStore: reviewReducer,
+    newsStore: newsReducer
 });
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
 const app = (

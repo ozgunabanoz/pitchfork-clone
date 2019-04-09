@@ -32,8 +32,8 @@ class ReviewEditModal extends Component {
 
     render() {
         return (
-            <div className="col s1 offset-s10">
-                <a className="btn-flat modal-trigger" href="#modal1">
+            <div>
+                <a className="btn-floating modal-trigger" href="#modal1">
                     <i className="small material-icons">create</i>
                 </a>
 

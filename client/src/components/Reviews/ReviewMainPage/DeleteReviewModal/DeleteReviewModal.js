@@ -27,8 +27,8 @@ class DeleteReviewModal extends Component {
 
     render() {
         return (
-            <div className="col s1">
-                <a className="btn-flat modal-trigger" href="#modal2">
+            <div>
+                <a className="btn-floating modal-trigger" href="#modal2">
                     <i className="small material-icons">clear</i>
                 </a>
 
@@ -43,14 +43,13 @@ class DeleteReviewModal extends Component {
                             <p>Are you sure?</p>
                             <button
                                 href="#!"
-                                className="modal-close right btn-flat"
+                                className="modal-close btn-flat"
                                 type="submit"
                             >
                                 Agree
                             </button>
                         </form>
                     </div>
-                    <div className="modal-footer" />
                 </div>
                 {this.state.redirect ? <Redirect to="/reviews" /> : null}
             </div>

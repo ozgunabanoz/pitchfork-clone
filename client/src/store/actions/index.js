@@ -6,3 +6,4 @@ export {
     updateReview,
     deleteReview
 } from './review';
+export { getNews, postNews } from './news';

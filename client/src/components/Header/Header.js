@@ -10,7 +10,7 @@ import Logo from './../../assets/p4klogo.JPG';
 class Header extends Component {
     state = {
         links: [
-            { name: 'The Latest', url: '/latest' },
+            { name: 'The Latest', url: '/news' },
             { name: 'Reviews', url: '/reviews' },
             { name: 'Best New Music', url: '/bestnewmusic' },
             { name: 'Features', url: '/features' },

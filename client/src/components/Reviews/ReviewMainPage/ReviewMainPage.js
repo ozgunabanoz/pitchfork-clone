@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import M from 'materialize-css';
 
 import ReviewEditModal from './ReviewEditModal/ReviewEditModal';
 import DeleteReviewModal from './DeleteReviewModal/DeleteReviewModal';
 import './ReviewMainPage.css';
 
 class ReviewMainPage extends Component {
+    componentDidMount() {
+        let elems = document.querySelectorAll('.fixed-action-btn');
+        M.FloatingActionButton.init(elems);
+    }
+
     // continue styling later
     formatReview = () => {
         let review = this.props.clickedReview.review
@@ -25,14 +31,26 @@ class ReviewMainPage extends Component {
     render() {
         return (
             // make this modals pop from right side like a dropdown thing you know what i mean
-            <div className="container">
-                <div className="row">
-                    <ReviewEditModal
-                        clickedReviewProp={this.props.clickedReview}
-                    />
-                    <DeleteReviewModal
-                        clickedReviewProp={this.props.clickedReview}
-                    />
+            <div
+                className="container"
+                style={{ textAlign: 'justify', fontSize: 'small' }}
+            >
+                <div className="fixed-action-btn">
+                    <a className="btn-floating btn-large red">
+                        <i className="large material-icons">mode_edit</i>
+                    </a>
+                    <ul>
+                        <li key="reviewEditModal">
+                            <ReviewEditModal
+                                clickedReviewProp={this.props.clickedReview}
+                            />
+                        </li>
+                        <li key="reviewDelModal">
+                            <DeleteReviewModal
+                                clickedReviewProp={this.props.clickedReview}
+                            />
+                        </li>
+                    </ul>
                 </div>
                 <h3>{this.props.clickedReview.albumTitle}</h3>
                 <h3>{this.props.clickedReview.albumArtist}</h3>

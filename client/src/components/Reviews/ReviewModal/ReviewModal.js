@@ -46,8 +46,8 @@ class ReviewModal extends Component {
         return (
             <div className="row">
                 <div className="col s2 offset-s12">
-                    <a className="btn-flat modal-trigger" href="#modal1">
-                        <i className="small material-icons">create</i>
+                    <a className="btn-floating modal-trigger" href="#modal1">
+                        <i className="large material-icons">create</i>
                     </a>
 
                     <div id="modal1" className="modal">
