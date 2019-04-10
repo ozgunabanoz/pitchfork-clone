@@ -6,4 +6,4 @@ export {
     updateReview,
     deleteReview
 } from './review';
-export { getNews, postNews } from './news';
+export { getNews, postNews, clickNews, deleteNews, updateNews } from './news';

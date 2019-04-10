@@ -10,6 +10,7 @@ import Logout from './Logout/Logout';
 import Reviews from './Reviews/Reviews';
 import ReviewMainPage from './Reviews/ReviewMainPage/ReviewMainPage';
 import News from './News/News';
+import NewsLayout from './News/NewsLayout/NewsLayout';
 import * as actions from './../store/actions/index';
 import './App.css';
 
@@ -33,7 +34,8 @@ class App extends Component {
                 <Switch>
                     <Route path="/reviews" exact component={Reviews} />
                     <Route path="/reviews/albums" component={ReviewMainPage} />
-                    <Route path="/news" component={News} />
+                    <Route path="/news" exact component={News} />
+                    <Route path="/news/item/" component={NewsLayout} />
                     <Route path="/logout" component={Logout} />
                     <Route path="/" exact component={MainPage} />
                     <Redirect to="/" />

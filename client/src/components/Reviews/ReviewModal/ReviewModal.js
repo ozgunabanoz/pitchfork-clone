@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import { connect } from 'react-redux';
 
+import ImageUploader from './../../ImageUploader';
 import * as actions from '../../../store/actions/index';
 import './ReviewModal.css';
 
@@ -97,6 +98,7 @@ class ReviewModal extends Component {
                                     }
                                     value={this.state.reviewSubmitForm.genre}
                                 />
+                                {/* <ImageUploader /> */}
                                 <button
                                     href="#!"
                                     className="modal-close right btn-flat"

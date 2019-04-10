@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import M from 'materialize-css';
+import { connect } from 'react-redux';
 
-import ReviewEditModal from './ReviewEditModal/ReviewEditModal';
-import DeleteReviewModal from './DeleteReviewModal/DeleteReviewModal';
-import './ReviewMainPage.css';
+import DeleteNewsModal from './DeleteNewsModal/DeleteNewsModal';
+import EditNewsModal from './EditNewsModal/EditNewsModal';
+import './NewsLayout.css';
 
-class ReviewMainPage extends Component {
+class NewsLayout extends Component {
     componentDidMount() {
         let elems = document.querySelectorAll('.fixed-action-btn');
         M.FloatingActionButton.init(elems);
     }
 
-    // continue styling later
-    formatReview = () => {
-        let review = this.props.clickedReview.review
+    formatNews = () => {
+        let news = this.props.clickedNews.article
             .split('\n')
             .map((item, key) => {
                 return (
@@ -25,7 +24,8 @@ class ReviewMainPage extends Component {
                 );
             });
 
-        return review;
+        console.log(news);
+        return news;
     };
 
     render() {
@@ -39,23 +39,23 @@ class ReviewMainPage extends Component {
                         <i className="large material-icons">mode_edit</i>
                     </a>
                     <ul>
-                        <li key="reviewEditModal">
-                            <ReviewEditModal
-                                clickedReviewProp={this.props.clickedReview}
+                        <li key="newsEditModal">
+                            <EditNewsModal
+                                clickedNewsProp={this.props.clickedNews}
                             />
                         </li>
-                        <li key="reviewDelModal">
-                            <DeleteReviewModal
-                                clickedReviewProp={this.props.clickedReview}
+                        <li key="newsDelModal">
+                            <DeleteNewsModal
+                                clickedNewsProp={this.props.clickedNews}
                             />
                         </li>
                     </ul>
                 </div>
-                <h3>{this.props.clickedReview.albumTitle}</h3>
-                <h3>{this.props.clickedReview.albumArtist}</h3>
-                <h5>By: {this.props.clickedReview.writer}</h5>
+                <h3>{this.props.clickedNews.title}</h3>
+                <h3>{this.props.clickedNews.headline}</h3>
+                <h5>By: {this.props.clickedNews.writer}</h5>
                 <h5>
-                    <div>{this.formatReview()}</div>
+                    <div>{this.formatNews()}</div>
                 </h5>
             </div>
         );
@@ -64,8 +64,8 @@ class ReviewMainPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        clickedReview: state.reviewStore.clickedReview
+        clickedNews: state.newsStore.clickedNews
     };
 };
 
-export default connect(mapStateToProps)(ReviewMainPage);
+export default connect(mapStateToProps)(NewsLayout);

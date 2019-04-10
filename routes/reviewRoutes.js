@@ -29,7 +29,7 @@ module.exports = app => {
 
     app.get('/api/reviews', authenticate, async (req, res) => {
         try {
-            let reviews = await Review.find({});
+            let reviews = await Review.find({}).sort({ _id: -1 });
 
             res.send(reviews).status(200);
         } catch (e) {

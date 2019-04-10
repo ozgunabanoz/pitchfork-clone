@@ -5,3 +5,4 @@ export const FETCH_REVIEWS = 'FETCH_REVIEWS';
 export const ON_CLICK_REVIEW = 'ON_CLICK_REVIEW';
 
 export const FETCH_NEWS = 'FETCH_NEWS';
+export const CLICK_NEWS = 'CLICK_NEWS';

@@ -23,7 +23,7 @@ module.exports = app => {
 
     app.get('/api/news', authenticate, async (req, res) => {
         try {
-            let newsItems = await News.find({});
+            let newsItems = await News.find({}).sort({ _id: -1 });
 
             res.send(newsItems).status(200);
         } catch (e) {

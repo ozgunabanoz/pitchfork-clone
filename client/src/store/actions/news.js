@@ -30,3 +30,33 @@ export const fetchNews = news => {
         news: news
     };
 };
+
+export const clickNews = news => {
+    return {
+        type: actionTypes.CLICK_NEWS,
+        clickedNews: news
+    };
+};
+
+export const deleteNews = news => {
+    return async dispatch => {
+        try {
+            await axios.delete('/api/news', { data: news });
+            dispatch(getNews());
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const updateNews = news => {
+    return async dispatch => {
+        try {
+            let returnedData = await axios.patch('/api/news', news);
+
+            dispatch(clickNews(returnedData.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
