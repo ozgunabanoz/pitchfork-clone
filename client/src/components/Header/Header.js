@@ -13,10 +13,7 @@ class Header extends Component {
             { name: 'The Latest', url: '/news' },
             { name: 'Reviews', url: '/reviews' },
             { name: 'Best New Music', url: '/bestnewmusic' },
-            { name: 'Features', url: '/features' },
-            { name: 'Levels', url: '/levels' },
-            { name: 'Video', url: '/video' },
-            { name: 'Events', url: '/events' }
+            { name: 'Features', url: '/features' }
         ]
     };
 
@@ -24,17 +21,21 @@ class Header extends Component {
         let elems = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(elems, {
             coverTrigger: false,
-            hover: true,
             closeOnClick: true
         });
+
+        let elemsSideNav = document.querySelectorAll('.sidenav');
+        M.Sidenav.init(elemsSideNav);
     }
 
     renderLinks() {
         if (this.props.isAuth) {
             return _.map(this.state.links, link => {
                 return (
-                    <li key={link.name}>
-                        <Link to={link.url}>{link.name}</Link>
+                    <li key={link.name} className="sidenav-close">
+                        <Link to={link.url} style={{ fontWeight: 'bold' }}>
+                            {link.name}
+                        </Link>
                     </li>
                 );
             });
@@ -45,59 +46,86 @@ class Header extends Component {
 
     render() {
         let dropdownLinks = (
-            <ul id="dropdown1" className="dropdown-content">
-                <li>
+            <div>
+                <li className="sidenav-close">
                     <Link to="/login" style={{ color: '#1a1a1a' }}>
                         Login
                     </Link>
                 </li>
-                <li>
+                <li className="sidenav-close">
                     <Link to="/register" style={{ color: '#1a1a1a' }}>
                         Register
                     </Link>
                 </li>
-            </ul>
+            </div>
         );
         let dropdownName = 'Auth';
 
         if (this.props.isAuth) {
             dropdownLinks = (
-                <ul id="dropdown1" className="dropdown-content">
-                    <li>
+                <div>
+                    <li className="sidenav-close">
                         <Link to="/logout" style={{ color: '#1a1a1a' }}>
                             Logout
                         </Link>
                     </li>
-                </ul>
+                </div>
             );
             dropdownName = this.props.username;
         }
 
         return (
-            <nav>
-                <div className="nav-wrapper">
-                    <Link to="/" className="brand-logo left">
-                        <img src={Logo} />
-                    </Link>
-                    <ul className="right">
-                        <li className="links">{this.renderLinks()}</li>
-                        <li>
-                            <i className="large material-icons">
-                                account_circle
-                            </i>
-                        </li>
-                        <li>
+            <div>
+                <div className="navbar-fixed">
+                    <nav>
+                        <div className="nav-wrapper">
+                            <Link to="/" className="brand-logo">
+                                <img src={Logo} />
+                            </Link>
                             <a
-                                className="dropdown-trigger"
-                                data-target="dropdown1"
+                                href=""
+                                data-target="mobile-demo"
+                                className="sidenav-trigger"
                             >
-                                {dropdownName}
+                                <i className="material-icons">menu</i>
                             </a>
-                            {dropdownLinks}
-                        </li>
-                    </ul>
+                            <ul className="right hide-on-med-and-down">
+                                <li className="links">{this.renderLinks()}</li>
+                                <li>
+                                    <a
+                                        className="dropdown-trigger"
+                                        data-target="dropdown2"
+                                        style={{ fontWeight: 'bold' }}
+                                    >
+                                        {dropdownName}
+                                    </a>
+                                    <ul
+                                        id="dropdown2"
+                                        className="dropdown-content"
+                                    >
+                                        {dropdownLinks}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
-            </nav>
+                <ul className="sidenav" id="mobile-demo">
+                    <li className="links">{this.renderLinks()}</li>
+                    <li>
+                        <a
+                            className="dropdown-trigger"
+                            data-target="dropdown1"
+                            style={{ fontWeight: 'bold' }}
+                        >
+                            {dropdownName}
+                        </a>
+                        <ul id="dropdown1" className="dropdown-content">
+                            {dropdownLinks}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         );
     }
 }

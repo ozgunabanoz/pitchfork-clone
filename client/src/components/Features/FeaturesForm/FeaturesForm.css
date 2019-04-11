@@ -1,0 +1,17 @@
+.featurestitle {
+    font-size: x-small;
+}
+
+.featurestitle .ftitle {
+    font-weight: bold;
+}
+
+.featurestitle .fheadline {
+    font-style: italic;
+}
+
+.featureswriter {
+    font-size: xx-small;
+    font-weight: bold;
+    margin-top: 10px;
+}

@@ -17,5 +17,6 @@ app.use(cookieParser(process.env.COOKIE_SIGN));
 require('./routes/userRoutes')(app);
 require('./routes/reviewRoutes')(app);
 require('./routes/newsRoutes')(app);
+require('./routes/featuresRoutes')(app);
 
 app.listen(PORT);

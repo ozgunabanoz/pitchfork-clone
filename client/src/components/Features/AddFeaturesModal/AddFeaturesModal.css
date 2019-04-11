@@ -1,0 +1,17 @@
+.modal-close {
+    margin-top: 10px;
+    background-color: #1a1a1a;
+}
+
+textarea {
+    resize: none;
+    height: 200px;
+}
+
+.material-icons {
+    background-color: #1a1a1a;
+}
+
+.modal-trigger {
+    background-color: #1a1a1a;
+}

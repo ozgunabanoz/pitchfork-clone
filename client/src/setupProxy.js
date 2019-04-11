@@ -6,4 +6,5 @@ module.exports = function(app) {
     app.use(proxy('/api/logout', { target: 'http://localhost:5000' }));
     app.use(proxy('/api/reviews', { target: 'http://localhost:5000' }));
     app.use(proxy('/api/news', { target: 'http://localhost:5000' }));
+    app.use(proxy('/api/features', { target: 'http://localhost:5000' }));
 };

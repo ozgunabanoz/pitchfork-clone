@@ -1,0 +1,2 @@
+- simplify the code
+- figure out a way to design the layout for smaller screens

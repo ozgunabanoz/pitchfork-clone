@@ -11,6 +11,8 @@ import Reviews from './Reviews/Reviews';
 import ReviewMainPage from './Reviews/ReviewMainPage/ReviewMainPage';
 import News from './News/News';
 import NewsLayout from './News/NewsLayout/NewsLayout';
+import Features from './Features/Features';
+import FeaturesLayout from './Features/FeaturesLayout/FeaturesLayout';
 import * as actions from './../store/actions/index';
 import './App.css';
 
@@ -36,6 +38,8 @@ class App extends Component {
                     <Route path="/reviews/albums" component={ReviewMainPage} />
                     <Route path="/news" exact component={News} />
                     <Route path="/news/item/" component={NewsLayout} />
+                    <Route path="/features" exact component={Features} />
+                    <Route path="/features/item/" component={FeaturesLayout} />
                     <Route path="/logout" component={Logout} />
                     <Route path="/" exact component={MainPage} />
                     <Redirect to="/" />

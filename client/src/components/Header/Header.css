@@ -1,10 +1,8 @@
 nav {
     margin: 0 auto;
-    width: 98%;
 }
 
 .nav-wrapper {
-    margin-top: 10px;
     background-color: #1a1a1a;
 }
 
@@ -19,8 +17,4 @@ nav {
 
 .links {
     margin-right: 20px;
-}
-
-.authlink {
-    color: #1a1a1a;
 }
