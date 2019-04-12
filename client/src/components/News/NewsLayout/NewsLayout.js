@@ -24,7 +24,6 @@ class NewsLayout extends Component {
                 );
             });
 
-        console.log(news);
         return news;
     };
 

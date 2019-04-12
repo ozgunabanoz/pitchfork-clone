@@ -36,7 +36,7 @@ class ReviewMainPage extends Component {
             >
                 <div className="fixed-action-btn">
                     <a className="btn-floating btn-large red">
-                        <i className="large material-icons">mode_edit</i>
+                        <i className="small material-icons">mode_edit</i>
                     </a>
                     <ul>
                         <li key="reviewEditModal">

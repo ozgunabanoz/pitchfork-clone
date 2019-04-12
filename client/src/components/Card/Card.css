@@ -1,17 +1,21 @@
-.featurestitle {
+.itemtitle {
     font-size: x-small;
 }
 
-.featurestitle .ftitle {
+.itemtitle .ititle {
     font-weight: bold;
 }
 
-.featurestitle .fheadline {
+.itemtitle .iheadline {
     font-style: italic;
 }
 
-.featureswriter {
+.itemwriter {
     font-size: xx-small;
     font-weight: bold;
     margin-top: 10px;
+}
+
+.card-content {
+    text-align: center;
 }

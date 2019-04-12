@@ -24,7 +24,7 @@ module.exports = app => {
 
     app.get('/api/features', authenticate, async (req, res) => {
         try {
-            let featuresItems = await Features.find({});
+            let featuresItems = await Features.find({}).sort({ _id: -1 });
 
             res.send(featuresItems).status(200);
         } catch (e) {

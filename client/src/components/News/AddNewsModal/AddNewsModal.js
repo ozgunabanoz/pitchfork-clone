@@ -43,9 +43,9 @@ class AddNewsModal extends Component {
     render() {
         return (
             <div className="row">
-                <div className="col s2 offset-s12">
+                <div className="col s1 offset-s11">
                     <a className="btn-floating modal-trigger" href="#modal1">
-                        <i className="large material-icons">create</i>
+                        <i className="medium material-icons">create</i>
                     </a>
                     <div id="modal1" className="modal">
                         <div className="modal-content">

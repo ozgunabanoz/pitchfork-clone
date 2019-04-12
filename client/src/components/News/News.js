@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import NewsForm from './NewsForm/NewsForm';
+import Form from './../Form/Form';
 import AddNewsModal from './AddNewsModal/AddNewsModal';
 import * as actions from './../../store/actions/index';
 import './News.css';
 
 class News extends Component {
     componentDidMount() {
-        this.props.onGetReviews();
+        this.props.onGetNews();
     }
 
     render() {
         return (
             <div className="container">
                 <AddNewsModal />
-                <NewsForm />
+                <Form itemClass="news" />
             </div>
         );
     }
@@ -23,7 +23,7 @@ class News extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onGetReviews: () => dispatch(actions.getNews())
+        onGetNews: () => dispatch(actions.getNews())
     };
 };
 
