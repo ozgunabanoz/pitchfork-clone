@@ -1,3 +1,5 @@
+// for features and news sections
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';

@@ -1,2 +1,16 @@
-- simplify the code
+- continue to simplify the code
 - try to integrate draft.js
+
+/* const importAll = r => {
+    return r.keys().map(r);
+};
+
+ const images = importAll(
+     require.context(
+         './../../../assets/albumCovers/',
+         false,
+         /\.(png|jpe?g|svg)$/
+     )
+ );
+ figure out how to assign specific
+ images to specific review entries */

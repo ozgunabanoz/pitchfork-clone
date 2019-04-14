@@ -1,215 +1,99 @@
+// for features and news only
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import MediaQuery from 'react-responsive';
 
-import Card from './../Card/Card';
+import ScreenAttributes from './ScreenAttributes';
+import RowGenerator from './RowGenerator';
+import Spinner from './../Spinner/Spinner';
 
 class Form extends Component {
-    generateUrl = (itemTitle, itemClass) => {
-        let prefix = '';
-
-        if (itemClass === 'feature') {
-            prefix = '/features/item/';
-        } else if (itemClass === 'news') {
-            prefix = '/news/item/';
-        }
-
-        let urlGen = prefix + itemTitle;
-        urlGen = urlGen.replace(/ /g, '-');
-
-        return urlGen;
-    };
-
-    firstRow = () => {
-        try {
-            let item = null;
-
-            if (this.props.itemClass === 'feature') {
-                item = this.props.features[0];
-            } else if (this.props.itemClass === 'news') {
-                item = this.props.news[0];
-            }
-
-            let genUrl = this.generateUrl(item.title, this.props.itemClass);
-            let fRow = true;
-
-            return (
-                <Card
-                    genUrlProp={genUrl}
-                    itemProp={item}
-                    fRowProp={fRow}
-                    cardClass={this.props.itemClass}
-                />
-            );
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    secRow = () => {
-        try {
-            let secRowItems = null;
-            let classType = true;
-
-            if (this.props.itemClass === 'feature') {
-                secRowItems = this.props.features.slice(1, 4);
-                classType = true;
-            } else if (this.props.itemClass === 'news') {
-                secRowItems = this.props.news.slice(1, 5);
-                classType = false;
-            }
-
-            return _.map(secRowItems, item => {
-                let genUrl = this.generateUrl(item.title, this.props.itemClass);
-
-                return (
-                    <div className={classType ? 'col s4' : 'col s3'}>
-                        <Card
-                            genUrlProp={genUrl}
-                            itemProp={item}
-                            cardClass={this.props.itemClass}
-                        />
-                    </div>
-                );
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    thirdRow = () => {
-        try {
-            let thirdRowItems = null;
-
-            if (this.props.itemClass === 'feature') {
-                thirdRowItems = this.props.features.slice(4, 10);
-            } else if (this.props.itemClass === 'news') {
-                thirdRowItems = this.props.news.slice(5);
-            }
-
-            return _.map(thirdRowItems, item => {
-                let genUrl = this.generateUrl(item.title, this.props.itemClass);
-
-                return (
-                    <div className="row">
-                        <div className="col s8">
-                            <Card
-                                genUrlProp={genUrl}
-                                itemProp={item}
-                                cardClass={this.props.itemClass}
-                            />
-                        </div>
-                    </div>
-                );
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    renderRestRows = () => {
-        try {
-            let restFeatureCols = this.restRows();
-            let restFeatureRows = [];
-
-            for (let i = 0; i < Math.ceil(restFeatureCols.length / 4); i++) {
-                let columns = [];
-
-                for (let j = 0; j < restFeatureCols.length; j++) {
-                    if (Math.floor(j / 4) === i) {
-                        columns.push(restFeatureCols[j]);
-                    }
-                }
-
-                restFeatureRows.push(
-                    <div key={i} className="row">
-                        {columns}
-                    </div>
-                );
-            }
-            return restFeatureRows;
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    restRows = () => {
-        try {
-            let restRowFeatures = this.props.features.slice(10);
-
-            return _.map(restRowFeatures, feature => {
-                let genUrl = this.generateUrl(
-                    feature.title,
-                    this.props.itemClass
-                );
-
-                return (
-                    <div className="col s3">
-                        <Card
-                            genUrlProp={genUrl}
-                            itemProp={feature}
-                            cardClass={this.props.itemClass}
-                        />
-                    </div>
-                );
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    mobileRows = () => {
-        try {
-            let mobileItems = null;
-
-            if (this.props.itemClass === 'feature') {
-                mobileItems = this.props.features;
-            } else if (this.props.itemClass === 'news') {
-                mobileItems = this.props.news;
-            }
-
-            return _.map(mobileItems, item => {
-                let genUrl = this.generateUrl(item.title, this.props.itemClass);
-
-                return (
-                    <div className="row">
-                        <div className="col s12">
-                            <Card
-                                genUrlProp={genUrl}
-                                itemProp={item}
-                                cardClass={this.props.itemClass}
-                            />
-                        </div>
-                    </div>
-                );
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
     render() {
-        let itemClassFlag = true;
+        let item = null;
+        let scrAttr = null;
+        let showScreen = false;
+        let firstItem = null;
 
-        if (this.props.itemClass === 'feature') {
-            itemClassFlag = true;
-        } else if (this.props.itemClass === 'news') {
-            itemClassFlag = false;
-        }
+        try {
+            if (this.props.itemClass === 'feature') {
+                item = this.props.features;
+                firstItem = this.props.features[0];
+                scrAttr = ScreenAttributes.features;
+                showScreen = true;
+            } else if (this.props.itemClass === 'news') {
+                item = this.props.news;
+                scrAttr = ScreenAttributes.news;
+                firstItem = this.props.news[0];
+                showScreen = true;
+                try {
+                    scrAttr.thirdRowSliceNum = this.props.news.length;
+                } catch (e) {}
+            }
+        } catch (e) {}
+
         return (
             <div>
-                <MediaQuery minDeviceWidth={601}>
-                    <div className="row">
-                        <div className="col s12">{this.firstRow()}</div>
+                {showScreen ? (
+                    <div>
+                        <MediaQuery minDeviceWidth={601}>
+                            <div className="row">
+                                <RowGenerator
+                                    items={{ firstItem }}
+                                    props={scrAttr.props}
+                                    colAttr={scrAttr.firstRowColAttr}
+                                    fRowFlag={true}
+                                    rDetFlag={false}
+                                />
+                            </div>
+                            <div className="row">
+                                <RowGenerator
+                                    items={item.slice(
+                                        1,
+                                        scrAttr.secRowSliceNum
+                                    )}
+                                    props={scrAttr.props}
+                                    colAttr={scrAttr.secRowColAttr}
+                                    fRowFlag={false}
+                                    rDetFlag={false}
+                                />
+                            </div>
+                            <div>
+                                <RowGenerator
+                                    items={item.slice(
+                                        scrAttr.secRowSliceNum,
+                                        scrAttr.thirdRowSliceNum
+                                    )}
+                                    props={scrAttr.props}
+                                    colAttr={scrAttr.thirdRowColAttr}
+                                    fRowFlag={false}
+                                    rDetFlag={true}
+                                />
+                            </div>
+                            {scrAttr.itemClassFlag ? (
+                                <RowGenerator
+                                    itemClassFlag={scrAttr.itemClassFlag}
+                                    item={item}
+                                    scrAttr={scrAttr}
+                                />
+                            ) : null}
+                        </MediaQuery>
+                        <MediaQuery maxDeviceWidth={600}>
+                            <div>
+                                <RowGenerator
+                                    items={item}
+                                    props={scrAttr.props}
+                                    colAttr={scrAttr.mobColAttr}
+                                    fRowFlag={false}
+                                    rDetFlag={true}
+                                />
+                            </div>
+                        </MediaQuery>
                     </div>
-                    <div className="row">{this.secRow()}</div>
-                    <div>{this.thirdRow()}</div>
-                    {itemClassFlag ? this.renderRestRows() : null}
-                </MediaQuery>
-                <MediaQuery maxDeviceWidth={600}>
-                    <div>{this.mobileRows()}</div>
-                </MediaQuery>
+                ) : (
+                    <Spinner />
+                )}
             </div>
         );
     }
