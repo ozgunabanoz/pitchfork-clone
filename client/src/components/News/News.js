@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Form from './../Form/Form';
-import AddNewsModal from './AddNewsModal/AddNewsModal';
+import AddModal from './../Modal/AddModal/AddModal';
 import * as actions from './../../store/actions/index';
 import './News.css';
 
@@ -14,7 +14,7 @@ class News extends Component {
     render() {
         return (
             <div className="container">
-                <AddNewsModal />
+                <AddModal itemClass="news" />
                 <Form itemClass="news" />
             </div>
         );

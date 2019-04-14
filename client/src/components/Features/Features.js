@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import * as actions from './../../store/actions/index';
 import './Features.css';
-import AddFeaturesModal from './AddFeaturesModal/AddFeaturesModal';
 import Form from './../Form/Form';
+import AddModal from './../Modal/AddModal/AddModal';
 
 class Features extends Component {
     componentDidMount() {
@@ -14,7 +14,7 @@ class Features extends Component {
     render() {
         return (
             <div className="container">
-                <AddFeaturesModal />
+                <AddModal itemClass="feature" />
                 <Form itemClass="feature" />
             </div>
         );

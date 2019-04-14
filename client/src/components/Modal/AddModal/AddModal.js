@@ -3,11 +3,16 @@ import M from 'materialize-css';
 import { connect } from 'react-redux';
 
 import * as actions from './../../../store/actions/index';
-import './AddNewsModal.css';
+import './AddModal.css';
 
-class AddNewsModal extends Component {
+class AddModal extends Component {
     state = {
-        newsSubmitForm: {
+        feature: {
+            title: '',
+            headline: '',
+            article: ''
+        },
+        news: {
             title: '',
             headline: '',
             article: ''
@@ -21,18 +26,24 @@ class AddNewsModal extends Component {
 
     onChangeHandler = (event, input) => {
         const updatedElement = {
-            ...this.state.newsSubmitForm,
+            ...this.state[this.props.itemClass],
             [input]: event.target.value
         };
 
-        this.setState({ newsSubmitForm: updatedElement });
+        this.setState({ [this.props.itemClass]: updatedElement });
     };
 
     onSubmitHandler = event => {
         event.preventDefault();
-        this.props.onPostNews(this.state.newsSubmitForm);
+
+        if (this.props.itemClass === 'feature') {
+            this.props.onPostFeatures(this.state[this.props.itemClass]);
+        } else if (this.props.itemClass === 'news') {
+            this.props.onPostNews(this.state[this.props.itemClass]);
+        }
+
         this.setState({
-            newsSubmitForm: {
+            [this.props.itemClass]: {
                 title: '',
                 headline: '',
                 article: ''
@@ -55,21 +66,28 @@ class AddNewsModal extends Component {
                             >
                                 <input
                                     placeholder="Title"
-                                    value={this.state.newsSubmitForm.title}
+                                    value={
+                                        this.state[this.props.itemClass].title
+                                    }
                                     onChange={event =>
                                         this.onChangeHandler(event, 'title')
                                     }
                                 />
                                 <input
                                     placeholder="Headline"
-                                    value={this.state.newsSubmitForm.headline}
+                                    value={
+                                        this.state[this.props.itemClass]
+                                            .headline
+                                    }
                                     onChange={event =>
                                         this.onChangeHandler(event, 'headline')
                                     }
                                 />
                                 <textarea
                                     placeholder="Article"
-                                    value={this.state.newsSubmitForm.article}
+                                    value={
+                                        this.state[this.props.itemClass].article
+                                    }
                                     onChange={event =>
                                         this.onChangeHandler(event, 'article')
                                     }
@@ -93,6 +111,7 @@ class AddNewsModal extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onPostFeatures: feature => dispatch(actions.postFeatures(feature)),
         onPostNews: news => dispatch(actions.postNews(news))
     };
 };
@@ -100,4 +119,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     null,
     mapDispatchToProps
-)(AddNewsModal);
+)(AddModal);

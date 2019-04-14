@@ -2,32 +2,38 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import { connect } from 'react-redux';
 
-import * as actions from './../../../../store/actions/index';
-import './EditFeaturesModal.css';
+import * as actions from './../../../store/actions/index';
+import './EditModal.css';
 
-class EditFeaturesModal extends Component {
+class EditModal extends Component {
     state = {
-        featureToEdit: {}
+        news: {},
+        feature: {}
     };
 
     componentDidMount() {
         let elems = document.querySelectorAll('.modal');
         M.Modal.init(elems);
-        this.setState({ featureToEdit: this.props.clickedFeatureProp });
+        this.setState({ [this.props.itemClass]: this.props.clickedItem });
     }
 
     onChangeHandler = (event, inputEntity) => {
         const updElement = {
-            ...this.state.featureToEdit,
+            ...this.state[this.props.itemClass],
             [inputEntity]: event.target.value
         };
 
-        this.setState({ featureToEdit: updElement });
+        this.setState({ [this.props.itemClass]: updElement });
     };
 
     onSubmitHandler = event => {
         event.preventDefault();
-        this.props.onUpdateFeatures(this.state.featureToEdit);
+
+        if (this.props.itemClass === 'news') {
+            this.props.onUpdateNews(this.state[this.props.itemClass]);
+        } else if (this.props.itemClass === 'feature') {
+            this.props.onUpdateFeatures(this.state[this.props.itemClass]);
+        }
     };
 
     render() {
@@ -45,21 +51,23 @@ class EditFeaturesModal extends Component {
                         >
                             <input
                                 placeholder="Title"
-                                value={this.state.featureToEdit.title}
+                                value={this.state[this.props.itemClass].title}
                                 onChange={event =>
                                     this.onChangeHandler(event, 'title')
                                 }
                             />
                             <input
                                 placeholder="Headline"
-                                value={this.state.featureToEdit.headline}
+                                value={
+                                    this.state[this.props.itemClass].headline
+                                }
                                 onChange={event =>
                                     this.onChangeHandler(event, 'headline')
                                 }
                             />
                             <textarea
                                 placeholder="Article"
-                                value={this.state.featureToEdit.article}
+                                value={this.state[this.props.itemClass].article}
                                 onChange={event =>
                                     this.onChangeHandler(event, 'article')
                                 }
@@ -82,6 +90,7 @@ class EditFeaturesModal extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onUpdateNews: news => dispatch(actions.updateNews(news)),
         onUpdateFeatures: feature => dispatch(actions.updateFeatures(feature))
     };
 };
@@ -89,4 +98,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     null,
     mapDispatchToProps
-)(EditFeaturesModal);
+)(EditModal);

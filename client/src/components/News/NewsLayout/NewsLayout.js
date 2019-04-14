@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import { connect } from 'react-redux';
 
-import DeleteNewsModal from './DeleteNewsModal/DeleteNewsModal';
-import EditNewsModal from './EditNewsModal/EditNewsModal';
+import DeleteModal from './../../Modal/DeleteModal/DeleteModal';
+import EditModal from './../../Modal/EditModal/EditModal';
 import './NewsLayout.css';
 
 class NewsLayout extends Component {
@@ -39,13 +39,16 @@ class NewsLayout extends Component {
                     </a>
                     <ul>
                         <li key="newsEditModal">
-                            <EditNewsModal
-                                clickedNewsProp={this.props.clickedNews}
+                            <EditModal
+                                clickedItem={this.props.clickedNews}
+                                itemClass="news"
                             />
                         </li>
                         <li key="newsDelModal">
-                            <DeleteNewsModal
-                                clickedNewsProp={this.props.clickedNews}
+                            <DeleteModal
+                                clickedItem={this.props.clickedNews}
+                                itemClass="news"
+                                redirectAddress="/news"
                             />
                         </li>
                     </ul>

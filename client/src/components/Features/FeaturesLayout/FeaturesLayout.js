@@ -3,8 +3,8 @@ import M from 'materialize-css';
 import { connect } from 'react-redux';
 
 import './FeaturesLayout.css';
-import DeleteFeaturesModal from './DeleteFeaturesModal/DeleteFeaturesModal';
-import EditFeaturesModal from './EditFeaturesModal/EditFeaturesModal';
+import DeleteModal from './../../Modal/DeleteModal/DeleteModal';
+import EditModal from './../../Modal/EditModal/EditModal';
 
 class FeaturesLayout extends Component {
     componentDidMount() {
@@ -39,13 +39,16 @@ class FeaturesLayout extends Component {
                     </a>
                     <ul>
                         <li key="featureEditModal">
-                            <EditFeaturesModal
-                                clickedFeatureProp={this.props.clickedFeature}
+                            <EditModal
+                                clickedItem={this.props.clickedFeature}
+                                itemClass="feature"
                             />
                         </li>
                         <li key="featureDelModal">
-                            <DeleteFeaturesModal
-                                clickedFeatureProp={this.props.clickedFeature}
+                            <DeleteModal
+                                clickedItem={this.props.clickedFeature}
+                                itemClass="feature"
+                                redirectAddress="/features"
                             />
                         </li>
                     </ul>

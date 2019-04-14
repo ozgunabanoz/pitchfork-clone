@@ -3,25 +3,32 @@ import M from 'materialize-css';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import * as actions from './../../../../store/actions/index';
-import './DeleteNewsModal.css';
+import * as actions from './../../../store/actions/index';
+import './DeleteModal.css';
 
-class DeleteNewsModal extends Component {
+class DeleteModal extends Component {
     state = {
         news: {},
+        feature: {},
         redirect: false
     };
 
     componentDidMount() {
         let elems = document.querySelectorAll('.modal');
         M.Modal.init(elems);
-        this.setState({ news: this.props.clickedNewsProp });
+        this.setState({ [this.props.itemClass]: this.props.clickedItem });
         this.setState({ redirect: false });
     }
 
     onDeleteClick = event => {
         event.preventDefault();
-        this.props.onDelNews(this.state.news);
+
+        if (this.props.itemClass === 'feature') {
+            this.props.onDelFeatures(this.state[this.props.itemClass]);
+        } else if (this.props.itemClass === 'news') {
+            this.props.onDelNews(this.state[this.props.itemClass]);
+        }
+
         this.setState({ redirect: true });
     };
 
@@ -35,7 +42,7 @@ class DeleteNewsModal extends Component {
                 <div id="modal2" className="modal">
                     <div className="modal-content">
                         <form onSubmit={this.onDeleteClick}>
-                            <h4>Delete this news</h4>
+                            <h4>Delete this {this.props.itemClass}</h4>
                             <p>Are you sure?</p>
                             <button
                                 href="#!"
@@ -47,7 +54,9 @@ class DeleteNewsModal extends Component {
                         </form>
                     </div>
                 </div>
-                {this.state.redirect ? <Redirect to="/news" /> : null}
+                {this.state.redirect ? (
+                    <Redirect to={this.props.redirectAddress} />
+                ) : null}
             </div>
         );
     }
@@ -55,11 +64,12 @@ class DeleteNewsModal extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onDelNews: news => dispatch(actions.deleteNews(news))
+        onDelNews: news => dispatch(actions.deleteNews(news)),
+        onDelFeatures: feature => dispatch(actions.deleteFeatures(feature))
     };
 };
 
 export default connect(
     null,
     mapDispatchToProps
-)(DeleteNewsModal);
+)(DeleteModal);
