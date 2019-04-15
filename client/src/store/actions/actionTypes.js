@@ -9,3 +9,5 @@ export const CLICK_NEWS = 'CLICK_NEWS';
 
 export const FETCH_FEATURES = 'FETCH_FEATURES';
 export const CLICK_FEATURES = 'CLICK_FEATURES';
+
+export const FETCH_BNM = 'FETCH_BNM';

@@ -14,3 +14,4 @@ export {
     deleteFeatures,
     updateFeatures
 } from './features';
+export { getBNM } from './bestNewMusic';

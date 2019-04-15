@@ -11,6 +11,7 @@ module.exports = app => {
             let body = _.pick(req.body, [
                 'albumTitle',
                 'albumArtist',
+                'grade',
                 'genre',
                 'review'
             ]);
@@ -30,6 +31,18 @@ module.exports = app => {
     app.get('/api/reviews', authenticate, async (req, res) => {
         try {
             let reviews = await Review.find({}).sort({ _id: -1 });
+
+            res.send(reviews).status(200);
+        } catch (e) {
+            console.log(e);
+        }
+    });
+
+    app.get('/api/best_reviews', async (req, res) => {
+        try {
+            let reviews = await Review.find({})
+                .sort({ grade: -1 })
+                .limit(3);
 
             res.send(reviews).status(200);
         } catch (e) {

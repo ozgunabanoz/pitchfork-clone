@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Header from './Header/Header';
-import Register from './Register/Register';
+import Header from './MainComps/Header/Header';
+import Register from './AuthComps/Register/Register';
 import MainPage from './MainPage';
-import Login from './Login/Login';
-import Logout from './Logout/Logout';
-import Reviews from './Reviews/Reviews';
-import ReviewMainPage from './Reviews/ReviewMainPage/ReviewMainPage';
-import News from './News/News';
-import NewsLayout from './News/NewsLayout/NewsLayout';
-import Features from './Features/Features';
-import FeaturesLayout from './Features/FeaturesLayout/FeaturesLayout';
+import Login from './AuthComps/Login/Login';
+import Logout from './AuthComps/Logout/Logout';
+import Reviews from './MainComps/Reviews/Reviews';
+import ReviewMainPage from './MainComps/Reviews/ReviewMainPage/ReviewMainPage';
+import News from './MainComps/News/News';
+import NewsLayout from './MainComps/News/NewsLayout/NewsLayout';
+import Features from './MainComps/Features/Features';
+import FeaturesLayout from './MainComps/Features/FeaturesLayout/FeaturesLayout';
+import BestNewMusic from './MainComps/BestNewMusic/BestNewMusic';
 import * as actions from './../store/actions/index';
 import './App.css';
 
@@ -40,6 +41,11 @@ class App extends Component {
                     <Route path="/news/item/" component={NewsLayout} />
                     <Route path="/features" exact component={Features} />
                     <Route path="/features/item/" component={FeaturesLayout} />
+                    <Route
+                        path="/bestnewmusic"
+                        exact
+                        component={BestNewMusic}
+                    />
                     <Route path="/logout" component={Logout} />
                     <Route path="/" exact component={MainPage} />
                     <Redirect to="/" />

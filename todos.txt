@@ -1,5 +1,6 @@
 - continue to simplify the code
 - try to integrate draft.js
+- add tooltip & toasts
 
 /* const importAll = r => {
     return r.keys().map(r);

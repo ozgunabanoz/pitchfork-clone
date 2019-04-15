@@ -23,6 +23,7 @@
         "lodash": "^4.17.11",
         "mongodb": "^3.2.2",
         "mongoose": "^5.4.19",
+        "mongoose-double": "0.0.1",
         "nodemon": "^1.18.10",
         "validator": "^10.11.0"
     }
