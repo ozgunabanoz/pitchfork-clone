@@ -15,3 +15,7 @@
  );
  figure out how to assign specific
  images to specific review entries */
+
+ - specific news, reviews and features links do not work in this current state, try to find a solution other than creating pages only when they're clicked
+ - work on styling especially on page layouts
+ - add a timer to the user model for auth tokens

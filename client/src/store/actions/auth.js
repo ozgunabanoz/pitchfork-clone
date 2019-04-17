@@ -89,3 +89,10 @@ export const checkAuthState = () => {
         }
     };
 };
+
+export const addLinks = links => {
+    return {
+        type: actionTypes.ADD_LINKS,
+        links: links
+    };
+};

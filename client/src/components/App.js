@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Header from './MainComps/Header/Header';
@@ -14,21 +14,27 @@ import NewsLayout from './MainComps/News/NewsLayout/NewsLayout';
 import Features from './MainComps/Features/Features';
 import FeaturesLayout from './MainComps/Features/FeaturesLayout/FeaturesLayout';
 import BestNewMusic from './MainComps/BestNewMusic/BestNewMusic';
+import NoPage from './NoPage';
 import * as actions from './../store/actions/index';
 import './App.css';
 
 class App extends Component {
+    state = {
+        authLinks: ['/reviews', '/news', '/features', '/bestnewmusic'],
+        nonAuthLinks: ['/register', '/login']
+    };
+
     componentDidMount() {
         this.props.checkAuth();
     }
 
     render() {
-        let routes = ( // figure out the refreshing issue
+        let routes = (
             <Switch>
                 <Route path="/register" component={Register} />
                 <Route path="/login" component={Login} />
                 <Route path="/" exact component={MainPage} />
-                <Redirect to="/" />
+                <Route component={NoPage} />
             </Switch>
         );
 
@@ -48,15 +54,20 @@ class App extends Component {
                     />
                     <Route path="/logout" component={Logout} />
                     <Route path="/" exact component={MainPage} />
-                    <Redirect to="/" />
+                    <Route component={NoPage} />
                 </Switch>
             );
+            this.props.addLinks(this.state.authLinks);
+        } else {
+            this.props.addLinks(this.state.nonAuthLinks);
         }
 
         return (
             <div className="App">
-                <Header />
-                {routes}
+                <BrowserRouter>
+                    <Header />
+                    {routes}
+                </BrowserRouter>
             </div>
         );
     }
@@ -70,7 +81,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        checkAuth: () => dispatch(actions.checkAuthState())
+        checkAuth: () => dispatch(actions.checkAuthState()),
+        addLinks: links => dispatch(actions.addLinks(links))
     };
 };
 

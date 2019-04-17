@@ -1,4 +1,4 @@
-export { postUser, login, logout, checkAuthState } from './auth';
+export { postUser, login, logout, checkAuthState, addLinks } from './auth';
 export {
     getReviews,
     postReviews,

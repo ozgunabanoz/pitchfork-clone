@@ -38,7 +38,7 @@ module.exports = app => {
         }
     });
 
-    app.get('/api/best_reviews', async (req, res) => {
+    app.get('/api/best_reviews', authenticate, async (req, res) => {
         try {
             let reviews = await Review.find({})
                 .sort({ grade: -1 })
