@@ -20,6 +20,11 @@ let featuresSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 1
+    },
+    url: {
+        type: String,
+        required: true,
+        minlength: 1
     }
 });
 

@@ -8,9 +8,12 @@ module.exports = app => {
     app.post('/api/news', authenticate, async (req, res) => {
         try {
             let body = _.pick(req.body, ['title', 'headline', 'article']);
+            let url = '/news/item/' + body.title;
+            url = url.replace(/ /g, '-');
             body = {
                 ...body,
-                writer: req.user.username
+                writer: req.user.username,
+                url: url
             };
             let newsItem = new News(body);
 

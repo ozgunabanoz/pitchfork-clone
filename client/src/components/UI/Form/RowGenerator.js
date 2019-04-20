@@ -43,22 +43,24 @@ const renderRestRows = (item, scrAttr) => {
 };
 
 const rowInitiator = props => {
-    return _.map(props.items, item => {
-        let genUrl = generateUrl(item.title, props.props.prefix);
-        return (
-            <div className={props.rDetFlag ? 'row' : ''}>
-                <div className={props.colAttr}>
-                    <Card
-                        genUrlProp={genUrl}
-                        itemProp={item}
-                        cardClass={props.props.cardClass}
-                        fRowProp={props.fRowFlag}
-                        cardFunc={props.cardFunc}
-                    />
+    try {
+        return _.map(props.items, item => {
+            let genUrl = generateUrl(item.title, props.props.prefix);
+            return (
+                <div className={props.rDetFlag ? 'row' : ''}>
+                    <div className={props.colAttr}>
+                        <Card
+                            genUrlProp={genUrl}
+                            itemProp={item}
+                            cardClass={props.props.cardClass}
+                            fRowProp={props.fRowFlag}
+                            cardFunc={props.cardFunc}
+                        />
+                    </div>
                 </div>
-            </div>
-        );
-    });
+            );
+        });
+    } catch (e) {}
 };
 
 const rowGenerator = props => {

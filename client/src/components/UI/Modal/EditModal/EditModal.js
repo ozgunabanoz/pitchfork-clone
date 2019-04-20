@@ -8,11 +8,12 @@ import './EditModal.css';
 class EditModal extends Component {
     state = {
         news: {},
-        feature: {}
+        features: {}
     };
 
     componentDidMount() {
         let elems = document.querySelectorAll('.modal');
+
         M.Modal.init(elems);
         this.setState({ [this.props.itemClass]: this.props.clickedItem });
     }
@@ -31,8 +32,10 @@ class EditModal extends Component {
 
         if (this.props.itemClass === 'news') {
             this.props.onUpdateNews(this.state[this.props.itemClass]);
-        } else if (this.props.itemClass === 'feature') {
+            this.props.callMe(this.state[this.props.itemClass]);
+        } else if (this.props.itemClass === 'features') {
             this.props.onUpdateFeatures(this.state[this.props.itemClass]);
+            this.props.callMe(this.state[this.props.itemClass]);
         }
     };
 

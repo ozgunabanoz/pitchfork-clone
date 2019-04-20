@@ -33,6 +33,13 @@ class AddModal extends Component {
         this.setState({ [this.props.itemClass]: updatedElement });
     };
 
+    generateUrl = (title, prefix) => {
+        let urlGen = prefix + title;
+        urlGen = urlGen.replace(/ /g, '-');
+
+        return urlGen;
+    };
+
     onSubmitHandler = event => {
         event.preventDefault();
 

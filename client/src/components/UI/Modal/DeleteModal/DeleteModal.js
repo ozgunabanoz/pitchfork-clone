@@ -9,7 +9,7 @@ import './DeleteModal.css';
 class DeleteModal extends Component {
     state = {
         news: {},
-        feature: {},
+        features: {},
         redirect: false
     };
 
@@ -23,7 +23,7 @@ class DeleteModal extends Component {
     onDeleteClick = event => {
         event.preventDefault();
 
-        if (this.props.itemClass === 'feature') {
+        if (this.props.itemClass === 'features') {
             this.props.onDelFeatures(this.state[this.props.itemClass]);
         } else if (this.props.itemClass === 'news') {
             this.props.onDelNews(this.state[this.props.itemClass]);
