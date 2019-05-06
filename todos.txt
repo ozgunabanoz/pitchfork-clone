@@ -1,21 +1,5 @@
 - continue to simplify the code
 - try to integrate draft.js
 - add tooltip & toasts
-
-/* const importAll = r => {
-    return r.keys().map(r);
-};
-
- const images = importAll(
-     require.context(
-         './../../../assets/albumCovers/',
-         false,
-         /\.(png|jpe?g|svg)$/
-     )
- );
- figure out how to assign specific
- images to specific review entries */
-
- - work on styling especially on page layouts
- - add a timer to the user model for auth tokens
- - feature & news routing done, integrate the same solution to reviews. also, redirecting to parent comp when a url doesn't exist
+- figure out how to assign specific images to specific review entries 
+- work on styling especially on page layouts

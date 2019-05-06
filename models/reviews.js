@@ -31,6 +31,11 @@ let reviewsSchema = new mongoose.Schema({
     grade: {
         type: SchemaTypes.Double,
         required: true
+    },
+    url: {
+        type: String,
+        required: true,
+        minlength: 1
     }
 });
 

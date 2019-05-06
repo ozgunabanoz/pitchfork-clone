@@ -15,10 +15,16 @@ module.exports = app => {
                 'genre',
                 'review'
             ]);
+            let url =
+                '/reviews/albums/' + body.albumArtist + '/' + body.albumTitle;
+
+            url = url.replace(/ /g, '-');
             body = {
                 ...body,
-                writer: req.user.username
+                writer: req.user.username,
+                url: url
             };
+
             let review = new Review(body);
 
             await review.save();

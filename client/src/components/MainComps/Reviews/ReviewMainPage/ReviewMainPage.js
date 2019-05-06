@@ -1,71 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import M from 'materialize-css';
 
-import ReviewEditModal from './ReviewEditModal/ReviewEditModal';
-import DeleteReviewModal from './DeleteReviewModal/DeleteReviewModal';
-import './ReviewMainPage.css';
+import ReviewLayoutLanding from './ReviewLayoutLanding/ReviewLayoutLanding';
+import * as action from './../../../../store/actions/index';
 
 class ReviewMainPage extends Component {
+    state = {
+        pageItem: null
+    };
+
     componentDidMount() {
-        let elems = document.querySelectorAll('.fixed-action-btn');
-        M.FloatingActionButton.init(elems);
+        this.props.getReviews();
     }
 
-    // continue styling later
-    formatReview = () => {
-        let review = this.props.clickedReview.review
-            .split('\n')
-            .map((item, key) => {
-                return (
-                    <span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{item}
-                        <br />
-                    </span>
-                );
-            });
+    setPageItem = () => {
+        let pageItemRec = this.props.reviews.find(item => {
+            return item.url === this.props.history.location.pathname;
+        });
 
-        return review;
+        this.setState({ pageItem: pageItemRec });
+    };
+
+    onChange = item => {
+        this.setState({ pageItem: item });
     };
 
     render() {
-        return (
-            <div
-                className="container"
-                style={{ textAlign: 'justify', fontSize: 'small' }}
-            >
-                <div className="fixed-action-btn">
-                    <a className="btn-floating btn-large red">
-                        <i className="small material-icons">mode_edit</i>
-                    </a>
-                    <ul>
-                        <li key="reviewEditModal">
-                            <ReviewEditModal
-                                clickedReviewProp={this.props.clickedReview}
-                            />
-                        </li>
-                        <li key="reviewDelModal">
-                            <DeleteReviewModal
-                                clickedReviewProp={this.props.clickedReview}
-                            />
-                        </li>
-                    </ul>
-                </div>
-                <h3>{this.props.clickedReview.albumTitle}</h3>
-                <h3>{this.props.clickedReview.albumArtist}</h3>
-                <h5>By: {this.props.clickedReview.writer}</h5>
-                <h5>
-                    <div>{this.formatReview()}</div>
-                </h5>
-            </div>
-        );
+        let pageContent = null;
+
+        if (this.props.reviews && this.state.pageItem === null) {
+            this.setPageItem();
+        }
+
+        if (this.state.pageItem) {
+            pageContent = (
+                <ReviewLayoutLanding
+                    propToSend={this.state.pageItem}
+                    callMe={item => this.onChange(item)}
+                />
+            );
+        }
+
+        return <div>{pageContent}</div>;
     }
 }
 
 const mapStateToProps = state => {
     return {
-        clickedReview: state.reviewStore.clickedReview
+        reviews: state.reviewStore.reviews
     };
 };
 
-export default connect(mapStateToProps)(ReviewMainPage);
+const mapDispatchToProps = dispatch => {
+    return {
+        getReviews: () => dispatch(action.getReviews())
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ReviewMainPage);

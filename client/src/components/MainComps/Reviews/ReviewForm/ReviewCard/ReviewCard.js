@@ -33,7 +33,7 @@ class ReviewCard extends Component {
                         </p>
                     </div>
                     <div className="genrewriter">
-                        <p>{this.props.review.genre}</p>
+                        <p>{this.props.review.genre + ' '}</p>
                         <p>By: {this.props.review.writer}</p>
                     </div>
                 </div>

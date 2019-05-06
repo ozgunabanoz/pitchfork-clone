@@ -9,8 +9,8 @@ module.exports = app => {
         try {
             let body = _.pick(req.body, ['title', 'headline', 'article']);
             let url = '/features/item/' + body.title;
-            url = url.replace(/ /g, '-');
 
+            url = url.replace(/ /g, '-');
             body = {
                 ...body,
                 writer: req.user.username,

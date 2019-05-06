@@ -28,6 +28,7 @@ class ReviewEditModal extends Component {
     onSubmitHandler = event => {
         event.preventDefault();
         this.props.onUpdateReview(this.state.reviewToEdit);
+        this.props.callMe(this.state.reviewToEdit);
     };
 
     render() {
