@@ -36,6 +36,18 @@ module.exports = app => {
         }
     });
 
+    app.get('/api/latest_features', authenticate, async (req, res) => {
+        try {
+            let features = await Features.find({})
+                .sort({ _id: -1 })
+                .limit(3);
+
+            res.send(features).status(200);
+        } catch (e) {
+            console.log(e);
+        }
+    });
+
     app.patch('/api/features', authenticate, async (req, res) => {
         try {
             let featuresToEdit = _.pick(req.body, [

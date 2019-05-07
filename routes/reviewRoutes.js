@@ -56,6 +56,18 @@ module.exports = app => {
         }
     });
 
+    app.get('/api/latest_reviews', authenticate, async (req, res) => {
+        try {
+            let reviews = await Review.find({})
+                .sort({ _id: -1 })
+                .limit(3);
+
+            res.send(reviews).status(200);
+        } catch (e) {
+            console.log(e);
+        }
+    });
+
     app.delete('/api/reviews', async (req, res) => {
         try {
             let _id = req.body._id;

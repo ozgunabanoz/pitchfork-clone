@@ -11,13 +11,19 @@ import reviewReducer from './store/reducers/review';
 import newsReducer from './store/reducers/news';
 import featuresReducer from './store/reducers/features';
 import BNMReducer from './store/reducers/bestNewMusic';
+import lNewsReducer from './store/reducers/latestNews';
+import lFeaturesReducer from './store/reducers/latestFeatures';
+import lReviewsReducer from './store/reducers/latestReviews';
 
 const rootReducer = combineReducers({
     regist: authReducer,
     reviewStore: reviewReducer,
     newsStore: newsReducer,
     featuresStore: featuresReducer,
-    BNMStore: BNMReducer
+    BNMStore: BNMReducer,
+    lNewsStore: lNewsReducer,
+    lReviewsStore: lReviewsReducer,
+    lFeaturesStore: lFeaturesReducer
 });
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
 

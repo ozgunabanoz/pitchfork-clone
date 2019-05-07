@@ -36,6 +36,18 @@ module.exports = app => {
         }
     });
 
+    app.get('/api/latest_news', authenticate, async (req, res) => {
+        try {
+            let news = await News.find({})
+                .sort({ _id: -1 })
+                .limit(3);
+
+            res.send(news).status(200);
+        } catch (e) {
+            console.log(e);
+        }
+    });
+
     app.delete('/api/news', authenticate, async (req, res) => {
         try {
             let _id = req.body._id;

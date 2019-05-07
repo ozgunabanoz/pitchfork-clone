@@ -12,3 +12,9 @@ export const FETCH_FEATURES = 'FETCH_FEATURES';
 export const CLICK_FEATURES = 'CLICK_FEATURES';
 
 export const FETCH_BNM = 'FETCH_BNM';
+
+export const FETCH_LNEWS = 'FETCH_LNEWS';
+
+export const FETCH_LREVIEWS = 'FETCH_LREVIEWS';
+
+export const FETCH_LFEATURES = 'FETCH_LFEATURES';

@@ -8,4 +8,7 @@ module.exports = function(app) {
     app.use(proxy('/api/news', { target: 'http://localhost:5000' }));
     app.use(proxy('/api/features', { target: 'http://localhost:5000' }));
     app.use(proxy('/api/best_reviews', { target: 'http://localhost:5000' }));
+    app.use(proxy('/api/latest_reviews', { target: 'http://localhost:5000' }));
+    app.use(proxy('/api/latest_news', { target: 'http://localhost:5000' }));
+    app.use(proxy('/api/latest_features', { target: 'http://localhost:5000' }));
 };

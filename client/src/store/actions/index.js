@@ -15,3 +15,6 @@ export {
     updateFeatures
 } from './features';
 export { getBNM } from './bestNewMusic';
+export { getLatestNews } from './latestNews';
+export { getLatestReviews } from './latestReviews';
+export { getLatestFeatures } from './latestFeatures';
