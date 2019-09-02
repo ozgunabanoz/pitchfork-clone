@@ -25,6 +25,7 @@
         "mongoose": "^5.4.19",
         "mongoose-double": "0.0.1",
         "nodemon": "^1.18.10",
+        "set-value": "^3.0.1",
         "validator": "^10.11.0"
     }
 }
