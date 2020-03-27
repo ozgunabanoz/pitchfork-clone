@@ -1,17 +1,17 @@
 .artisttitle {
-    font-size: x-small;
+  font-size: x-small;
 }
 
 .artisttitle .artist {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .artisttitle .albumtitle {
-    font-style: italic;
+  font-style: italic;
 }
 
 .genrewriter {
-    font-size: xx-small;
-    font-weight: bold;
-    margin-top: 10px;
+  font-size: xx-small;
+  font-weight: bold;
+  margin-top: 10px;
 }

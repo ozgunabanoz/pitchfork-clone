@@ -6,26 +6,23 @@ import Layout from './Layout/Layout';
 import './BestNewMusic.css';
 
 class BestNewMusic extends Component {
-    componentDidMount() {
-        this.props.onGetBNM();
-    }
+  componentDidMount() {
+    this.props.onGetBNM();
+  }
 
-    render() {
-        return (
-            <div className="container">
-                <Layout />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="container">
+        <Layout />
+      </div>
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        onGetBNM: () => dispatch(actions.getBNM())
-    };
+  return {
+    onGetBNM: () => dispatch(actions.getBNM())
+  };
 };
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(BestNewMusic);
+export default connect(null, mapDispatchToProps)(BestNewMusic);

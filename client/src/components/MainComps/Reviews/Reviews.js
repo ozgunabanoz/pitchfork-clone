@@ -7,27 +7,24 @@ import ReviewForm from './ReviewForm/ReviewForm';
 import './Reviews.css';
 
 class Reviews extends Component {
-    componentDidMount() {
-        this.props.onGetReviews();
-    }
+  componentDidMount() {
+    this.props.onGetReviews();
+  }
 
-    render() {
-        return (
-            <div className="container">
-                <AddReviewModal />
-                <ReviewForm />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="container">
+        <AddReviewModal />
+        <ReviewForm />
+      </div>
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        onGetReviews: () => dispatch(actions.getReviews())
-    };
+  return {
+    onGetReviews: () => dispatch(actions.getReviews())
+  };
 };
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(Reviews);
+export default connect(null, mapDispatchToProps)(Reviews);

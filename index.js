@@ -19,10 +19,4 @@ require('./routes/reviewRoutes')(app);
 require('./routes/newsRoutes')(app);
 require('./routes/featuresRoutes')(app);
 
-// const path = require('path');
-
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'index.html'));
-// });
-
 app.listen(PORT);

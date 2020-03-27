@@ -16,20 +16,24 @@ import lFeaturesReducer from './store/reducers/latestFeatures';
 import lReviewsReducer from './store/reducers/latestReviews';
 
 const rootReducer = combineReducers({
-    regist: authReducer,
-    reviewStore: reviewReducer,
-    newsStore: newsReducer,
-    featuresStore: featuresReducer,
-    BNMStore: BNMReducer,
-    lNewsStore: lNewsReducer,
-    lReviewsStore: lReviewsReducer,
-    lFeaturesStore: lFeaturesReducer
+  regist: authReducer,
+  reviewStore: reviewReducer,
+  newsStore: newsReducer,
+  featuresStore: featuresReducer,
+  BNMStore: BNMReducer,
+  lNewsStore: lNewsReducer,
+  lReviewsStore: lReviewsReducer,
+  lFeaturesStore: lFeaturesReducer
 });
-const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
+const store = createStore(
+  rootReducer,
+  {},
+  applyMiddleware(reduxThunk)
+);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.querySelector('#root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector('#root')
 );

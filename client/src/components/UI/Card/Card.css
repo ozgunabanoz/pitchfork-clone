@@ -1,21 +1,21 @@
 .itemtitle {
-    font-size: x-small;
+  font-size: x-small;
 }
 
 .itemtitle .ititle {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .itemtitle .iheadline {
-    font-style: italic;
+  font-style: italic;
 }
 
 .itemwriter {
-    font-size: xx-small;
-    font-weight: bold;
-    margin-top: 10px;
+  font-size: xx-small;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .card-content {
-    text-align: center;
+  text-align: center;
 }

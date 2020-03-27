@@ -7,27 +7,24 @@ import Form from './../../UI/Form/Form';
 import AddModal from './../../UI/Modal/AddModal/AddModal';
 
 class Features extends Component {
-    componentDidMount() {
-        this.props.onGetFeatures();
-    }
+  componentDidMount() {
+    this.props.onGetFeatures();
+  }
 
-    render() {
-        return (
-            <div className="container">
-                <AddModal itemClass="feature" />
-                <Form itemClass="feature" />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="container">
+        <AddModal itemClass="feature" />
+        <Form itemClass="feature" />
+      </div>
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        onGetFeatures: () => dispatch(actions.getFeatures())
-    };
+  return {
+    onGetFeatures: () => dispatch(actions.getFeatures())
+  };
 };
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(Features);
+export default connect(null, mapDispatchToProps)(Features);
